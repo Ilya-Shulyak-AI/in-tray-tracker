@@ -13,8 +13,12 @@
   - `TEST_CHECKLIST.md`
   - `IMPLEMENTATION_BACKLOG.md`
   - `STABILIZATION_SUMMARY.md`
+  - `KNOWN_LIMITATIONS.md`
+  - `CHANGELOG.md`
+- Added rollback guidance to `README.md`.
+- Expanded manual regression testing coverage.
 - Created GitHub issue #1 for blocked deeper `index.html` and JavaScript hardening work.
 
 ## Remaining planned work
 
-See `IMPLEMENTATION_BACKLOG.md` and GitHub issue #1.
+See `IMPLEMENTATION_BACKLOG.md`, `KNOWN_LIMITATIONS.md`, and GitHub issue #1.
