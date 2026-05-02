@@ -8,6 +8,7 @@ A single-page web app for tracking personal or work in-trays, including when eac
 - `mobile-bg-fix.css` contains the critical fixed background layer and mobile stability overrides.
 - `TEST_CHECKLIST.md` contains the manual regression checklist.
 - `IMPLEMENTATION_BACKLOG.md` contains remaining deeper JS/index hardening tasks.
+- `KNOWN_LIMITATIONS.md` documents current app limitations and risk areas.
 
 ## Critical background behavior
 
@@ -45,6 +46,10 @@ Before reverting, export a backup from the app if the current browser data matte
 ## Manual testing
 
 Run `TEST_CHECKLIST.md` after structural, visual, or JavaScript changes.
+
+## Known limitations
+
+See `KNOWN_LIMITATIONS.md` before relying on the app for critical data.
 
 ## Remaining work
 
