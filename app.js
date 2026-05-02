@@ -1,0 +1,6 @@
+/*
+  Placeholder for extracted app JavaScript.
+
+  Do not populate this file from truncated index.html output.
+  Extract script only from a complete verified copy of index.html.
+*/
