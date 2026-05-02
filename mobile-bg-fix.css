@@ -46,6 +46,21 @@ body::before {
   box-shadow: var(--glass-card-shadow) !important;
 }
 
+/* Keep swipe/tap cards from accidentally selecting text. */
+.compact-card,
+.swipe-card,
+.card-toggle,
+.card-actions {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 /* Remove internal dark blocks. */
 .meta-row,
 .notes {
