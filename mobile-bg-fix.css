@@ -1,1 +1,53 @@
-html,body{min-height:100%;background:#050505!important}body{background:none!important;position:relative}body::before{content:""!important;display:block!important;position:fixed!important;inset:0!important;z-index:-1!important;background:url('IMG_0775.jpeg') center center/cover no-repeat!important;background-color:#050505!important;pointer-events:none!important;transform:translateZ(0)!important}/* TRUE CLEAR GLASS */.card,.compact-card,.swipe-card{background:rgba(255,255,255,0.01)!important;backdrop-filter:blur(2px)!important;-webkit-backdrop-filter:blur(2px)!important;border:1px solid rgba(255,255,255,0.12)!important;box-shadow:0 4px 10px rgba(0,0,0,0.18)!important}/* REMOVE DARK BLOCKS */.meta-row,.notes{background:transparent!important;border-color:rgba(255,255,255,0.12)!important}/* STATUS COLORS */.badge.good{background:rgba(48,209,88,0.28)!important}.badge.warning{background:rgba(255,159,10,0.30)!important}.badge.overdue{background:rgba(255,69,58,0.32)!important}
+html,
+body {
+  min-height: 100%;
+  background: #050505 !important;
+}
+
+body {
+  background: none !important;
+  position: relative;
+}
+
+body::before {
+  content: "" !important;
+  display: block !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  background: url('IMG_0775.jpeg') center center / cover no-repeat !important;
+  background-color: #050505 !important;
+  pointer-events: none !important;
+  transform: translateZ(0) !important;
+}
+
+/* TRUE CLEAR GLASS */
+.card,
+.compact-card,
+.swipe-card {
+  background: rgba(255, 255, 255, 0.01) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* REMOVE DARK BLOCKS */
+.meta-row,
+.notes {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* STATUS COLORS */
+.badge.good {
+  background: rgba(48, 209, 88, 0.28) !important;
+}
+
+.badge.warning {
+  background: rgba(255, 159, 10, 0.30) !important;
+}
+
+.badge.overdue {
+  background: rgba(255, 69, 58, 0.32) !important;
+}
