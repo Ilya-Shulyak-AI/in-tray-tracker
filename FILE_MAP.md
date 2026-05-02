@@ -19,6 +19,12 @@
 - `BROWSER_TEST_MATRIX.md`  
   Browser and device test matrix.
 
+- `QA_SCENARIOS.md`  
+  Manual QA scenarios.
+
+- `RELEASE_CHECKLIST.md`  
+  Release-readiness checklist.
+
 - `IMPLEMENTATION_BACKLOG.md`  
   Remaining deeper code tasks.
 
@@ -45,6 +51,42 @@
 
 - `ROLLBACK_GUIDE.md`  
   Rollback process and stabilization checkpoints.
+
+- `LOCAL_DEV_SETUP.md`  
+  Local setup and safe refactor workflow.
+
+- `CSS_CASCADE_PLAN.md`  
+  CSS order and cleanup plan.
+
+- `EVENT_HANDLING_PLAN.md`  
+  Event delegation and gesture cleanup plan.
+
+- `DATA_MODEL_PLAN.md`  
+  Data shape and validation plan.
+
+- `STORAGE_MIGRATION_PLAN.md`  
+  LocalStorage migration plan.
+
+- `IMPORT_VALIDATION_PLAN.md`  
+  Backup import validation plan.
+
+- `TEXT_NORMALIZATION_PLAN.md`  
+  Name and note text handling plan.
+
+- `UNDO_PLAN.md`  
+  Undo behavior plan.
+
+- `DATE_LOGIC_PLAN.md`  
+  Date and status calculation plan.
+
+- `POINTER_GESTURE_PLAN.md`  
+  Pointer-based swipe plan.
+
+- `ACCESSIBILITY_PLAN.md`  
+  Keyboard and assistive technology plan.
+
+- `PERFORMANCE_PLAN.md`  
+  Render and interaction performance plan.
 
 ## Media/assets
 
