@@ -281,7 +281,7 @@ button:disabled {
 .swipe-card.status-good,
 .swipe-card.status-warning,
 .swipe-card.status-overdue {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055)) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055));
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   backdrop-filter: saturate(185%) blur(26px);
@@ -294,7 +294,7 @@ button:disabled {
   position: relative;
   border-radius: 21px;
   overflow: hidden;
-  background: transparent !important;
+  background: transparent;
 }
 
 .swipe-bg {
@@ -307,7 +307,7 @@ button:disabled {
   font-size: 0.86rem;
   color: #fff;
   pointer-events: none;
-  background: transparent !important;
+  background: transparent;
 }
 
 .swipe-bg-left,
@@ -315,7 +315,7 @@ button:disabled {
   height: 100%;
   display: flex;
   align-items: center;
-  background: transparent !important;
+  background: transparent;
 }
 
 .swipe-bg-left {
