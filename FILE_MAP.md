@@ -5,8 +5,14 @@
 - `index.html`  
   Main app file. Currently contains markup, inline CSS, and inline JavaScript.
 
+- `styles.css`  
+  Placeholder for extracted base app styles. Must be populated only from a complete verified `index.html`.
+
 - `mobile-bg-fix.css`  
   Fixed background layer and mobile stability overrides. This file is critical for iPhone Safari behavior.
+
+- `app.js`  
+  Placeholder for extracted app JavaScript. Must be populated only from a complete verified `index.html`.
 
 ## Documentation files
 
@@ -87,6 +93,9 @@
 
 - `PERFORMANCE_PLAN.md`  
   Render and interaction performance plan.
+
+- `FULL_INDEX_REQUIRED.md`  
+  Hard gate instructions before runtime refactor work.
 
 ## Media/assets
 
