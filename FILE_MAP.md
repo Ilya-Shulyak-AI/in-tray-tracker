@@ -16,6 +16,9 @@
 - `TEST_CHECKLIST.md`  
   Manual regression checklist.
 
+- `BROWSER_TEST_MATRIX.md`  
+  Browser and device test matrix.
+
 - `IMPLEMENTATION_BACKLOG.md`  
   Remaining deeper code tasks.
 
@@ -36,6 +39,12 @@
 
 - `CONTRIBUTING.md`  
   Guardrails for future changes.
+
+- `BACKUP_GUIDE.md`  
+  Backup and import safety guidance.
+
+- `ROLLBACK_GUIDE.md`  
+  Rollback process and stabilization checkpoints.
 
 ## Media/assets
 
