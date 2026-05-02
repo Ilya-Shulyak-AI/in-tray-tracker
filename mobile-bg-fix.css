@@ -1,24 +1,24 @@
 html,
 body {
   min-height: 100%;
-  background: #050505 !important;
+  background: #050505;
 }
 
 body {
-  background: none !important;
+  background: none;
   position: relative;
 }
 
 body::before {
-  content: "" !important;
-  display: block !important;
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: -1 !important;
-  background: url('IMG_0775.jpeg') center center / cover no-repeat !important;
-  background-color: #050505 !important;
-  pointer-events: none !important;
-  transform: translateZ(0) !important;
+  content: "";
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('IMG_0775.jpeg') center center / cover no-repeat;
+  background-color: #050505;
+  pointer-events: none;
+  transform: translateZ(0);
 }
 
 /* TRUE CLEAR GLASS */
