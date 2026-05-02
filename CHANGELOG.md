@@ -12,6 +12,8 @@
   - `README.md`
   - `TEST_CHECKLIST.md`
   - `BROWSER_TEST_MATRIX.md`
+  - `QA_SCENARIOS.md`
+  - `RELEASE_CHECKLIST.md`
   - `IMPLEMENTATION_BACKLOG.md`
   - `STABILIZATION_SUMMARY.md`
   - `KNOWN_LIMITATIONS.md`
@@ -22,6 +24,18 @@
   - `BACKUP_GUIDE.md`
   - `ROLLBACK_GUIDE.md`
   - `FILE_MAP.md`
+  - `LOCAL_DEV_SETUP.md`
+  - `CSS_CASCADE_PLAN.md`
+  - `EVENT_HANDLING_PLAN.md`
+  - `DATA_MODEL_PLAN.md`
+  - `STORAGE_MIGRATION_PLAN.md`
+  - `IMPORT_VALIDATION_PLAN.md`
+  - `TEXT_NORMALIZATION_PLAN.md`
+  - `UNDO_PLAN.md`
+  - `DATE_LOGIC_PLAN.md`
+  - `POINTER_GESTURE_PLAN.md`
+  - `ACCESSIBILITY_PLAN.md`
+  - `PERFORMANCE_PLAN.md`
 - Added rollback guidance to `README.md`.
 - Expanded manual regression testing coverage.
 - Created GitHub issue #1 for blocked deeper `index.html` and JavaScript hardening work.
