@@ -29,6 +29,19 @@ The app stores data locally in the browser using:
 3. Run the manual checklist after structural, visual, or JavaScript changes.
 4. Prioritize stability over animation or visual complexity.
 
+## Rollback guidance
+
+If a patch breaks the app, first revert the last commit that touched the broken file.
+
+Known stabilization checkpoints:
+
+- Full app restored and stylesheet placement fixed: `2a314a37560ccfe70c1100c74896edbd633c69c9`
+- Header simplified: `2a3f0c75b36e507638f47f92d3ad8a4f752e6657`
+- `index.html` formatted: `d58ac738d8f832f9f3099cc2fc511b14c1e08154`
+- Stabilization summary added: `629f9b6c768f3d9118f42a6e5d45b1b55b2d68c1`
+
+Before reverting, export a backup from the app if the current browser data matters.
+
 ## Manual testing
 
 Run `TEST_CHECKLIST.md` after structural, visual, or JavaScript changes.
