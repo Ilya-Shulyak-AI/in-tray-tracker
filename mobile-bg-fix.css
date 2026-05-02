@@ -55,6 +55,14 @@ body::before {
   user-select: none;
 }
 
+button,
+.compact-card,
+.swipe-card,
+.card-toggle,
+.stats {
+  -webkit-tap-highlight-color: transparent;
+}
+
 input,
 textarea {
   -webkit-user-select: text;
