@@ -16,10 +16,16 @@ body {
   background: var(--fixed-bg);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: none;
-  position: relative;
   isolation: isolate;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  position: relative;
 }
 
 /* Fixed background layer for iOS Safari and desktop consistency. */
