@@ -33,6 +33,18 @@ body {
   padding-bottom: max(34px, calc(env(safe-area-inset-bottom) + 24px));
 }
 
+@media (max-height: 620px) {
+  .top {
+    padding-bottom: 5px;
+  }
+
+  .toolbar,
+  .backup,
+  .stats {
+    margin: 5px 0;
+  }
+}
+
 /* Fixed background layer for iOS Safari and desktop consistency. */
 body::before {
   content: "";
