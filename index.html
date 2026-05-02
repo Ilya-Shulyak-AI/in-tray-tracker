@@ -1,6 +1,1106 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="theme-color" content="#050505"/><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2"/><link rel="icon" type="image/png" href="apple-touch-icon.png?v=2"/><link rel="shortcut icon" type="image/png" href="apple-touch-icon.png?v=2"/><link rel="stylesheet" href="mobile-bg-fix.css"/><title>In-Tray Tracker</title><style>
-:root{--bg:#050505;--card:rgba(255,255,255,.085);--card-strong:rgba(255,255,255,.14);--field:rgba(255,255,255,.07);--text:#f7f7fb;--muted:rgba(235,235,245,.64);--border:rgba(255,255,255,.18);--border-soft:rgba(255,255,255,.11);--good:rgba(48,209,88,.34);--warning:rgba(255,159,10,.38);--overdue:rgba(255,69,58,.40);--good-text:#dcfce7;--warning-text:#fff3cf;--overdue-text:#ffe4e4;--accent:rgba(255,255,255,.92);--accent-text:#09090b;--shadow:0 18px 44px rgba(0,0,0,.42);--radius:22px;--blur:saturate(180%) blur(24px)}*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);line-height:1.25;-webkit-font-smoothing:antialiased}.wrap{max-width:900px;margin:0 auto;padding:10px 8px 34px}.top{position:sticky;top:0;z-index:10;padding:calc(env(safe-area-inset-top) + 7px) 0 7px;text-align:center;overflow:hidden}.top-inner{max-height:24px}h1{margin:0;width:100%;font-size:1.05rem;font-weight:900;letter-spacing:-.015em;line-height:1;text-align:center;text-shadow:0 10px 28px rgba(0,0,0,.44)}.toolbar,.form,.stats,.backup,.empty{background:linear-gradient(180deg,rgba(255,255,255,.135),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.16);box-shadow:0 16px 38px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.17);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-radius:var(--radius);margin:7px 0}.toolbar,.stats,.backup{padding:6px}.stats{cursor:pointer}.toolbar-row,.backup-row{display:grid;gap:6px;grid-template-columns:repeat(3,minmax(0,1fr))}.toolbar-row input,.toolbar-row select,.toolbar-row button,.backup-row button{width:100%;min-width:0}.form{padding:12px}.form-grid{display:grid;gap:8px;grid-template-columns:2fr 1.1fr 1fr}.field{display:flex;flex-direction:column;gap:6px}label{font-size:.76rem;color:var(--muted);font-weight:750;letter-spacing:.01em}input,textarea,select,button{font:inherit}input,textarea,select{width:100%;padding:10px 10px;border:1px solid rgba(255,255,255,.18);border-radius:15px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.055));color:var(--text);min-height:40px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 8px 18px rgba(0,0,0,.16);outline:none;backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}input:focus,textarea:focus,select:focus{border-color:rgba(255,255,255,.38);background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.07));box-shadow:0 0 0 4px rgba(255,255,255,.07),inset 0 1px 0 rgba(255,255,255,.16)}textarea{min-height:70px;resize:vertical}button{border:1px solid rgba(255,255,255,.18);border-radius:15px;min-height:40px;padding:9px 10px;cursor:pointer;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.075));color:var(--text);font-weight:780;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 18px rgba(0,0,0,.16);transition:transform .18s ease,opacity .18s ease,background .18s ease,border-color .18s ease;backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}button:active{transform:scale(.985);background:linear-gradient(180deg,rgba(255,255,255,.25),rgba(255,255,255,.10))}button.secondary{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.055));color:var(--text);border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 18px rgba(0,0,0,.14)}button.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--border-soft)}button.small{min-height:34px;padding:7px 9px;font-size:.88rem;border-radius:13px;flex:1}button:disabled{opacity:.42;cursor:not-allowed}#toggleFormBtn{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.78));color:#09090b;border:1px solid rgba(255,255,255,.62);font-weight:900;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 20px rgba(0,0,0,.20)}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.stats{display:grid;gap:5px;grid-template-columns:repeat(4,1fr)}.stat{padding:6px 2px;border-radius:14px;border:1px solid rgba(255,255,255,.13);text-align:center;font-weight:850;font-size:.7rem;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 5px 12px rgba(0,0,0,.12)}.stat.total{background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.06));color:#f4f4f7}.stat.good{background:var(--good);color:var(--good-text)}.stat.warning{background:var(--warning);color:var(--warning-text)}.stat.overdue{background:var(--overdue);color:var(--overdue-text)}.list{display:grid;gap:8px;margin-top:8px}.empty{border-style:dashed;padding:22px 14px;text-align:center;color:var(--muted)}.card,.compact-card,.swipe-card.status-good,.swipe-card.status-warning,.swipe-card.status-overdue{background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.055))!important;border:1px solid rgba(255,255,255,.18);box-shadow:0 16px 36px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(255,255,255,.05);backdrop-filter:saturate(185%) blur(26px);-webkit-backdrop-filter:saturate(185%) blur(26px);border-radius:21px;overflow:hidden}.swipe-wrap{position:relative;border-radius:21px;overflow:hidden;background:transparent!important}.swipe-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;font-weight:900;font-size:.86rem;color:#fff;pointer-events:none;background:transparent!important}.swipe-bg-left,.swipe-bg-right{height:100%;display:flex;align-items:center;background:transparent!important}.swipe-bg-left{padding-left:14px;width:50%}.swipe-bg-right{justify-content:flex-end;padding-right:14px;width:50%;margin-left:auto}.compact-card,.swipe-card{position:relative;z-index:1;touch-action:pan-y;user-select:none;transition:transform .24s cubic-bezier(.2,.8,.2,1),box-shadow .24s ease}.compact-card{padding:10px 11px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.compact-title{font-size:1rem;font-weight:850;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.swipe-hint{font-size:.68rem;color:rgba(255,255,255,.66);grid-column:1 / -1;margin-top:-3px}.card-top{padding:11px 11px 8px;display:grid;gap:8px}.card-toggle{cursor:pointer}.title-row{display:flex;gap:8px;align-items:center;justify-content:space-between}.title{font-size:1.03rem;font-weight:880;letter-spacing:-.015em}.badge{white-space:nowrap;font-size:.75rem;font-weight:850;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.18);color:var(--text);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 14px rgba(0,0,0,.14);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}.badge.good{background:var(--good);color:var(--good-text)}.badge.warning{background:var(--warning);color:var(--warning-text)}.badge.overdue{background:var(--overdue);color:var(--overdue-text)}.meta{display:grid;gap:5px;font-size:.88rem}.meta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:7px 9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.09);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}.meta-label{color:rgba(255,255,255,.74);font-size:.76rem;font-weight:800}.meta-value{text-align:right;font-weight:680;color:var(--text);overflow-wrap:anywhere}.notes{color:rgba(244,244,245,.9);font-size:.88rem;white-space:pre-wrap;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:8px 9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}.card-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;padding:0 11px 11px}.footer-note{margin-top:12px;font-size:.78rem;color:rgba(235,235,245,.50);text-align:center;line-height:1.35}.danger{color:#ffb4ae}.hidden{display:none!important}@media(max-width:380px){.toolbar-row input,.toolbar-row select,.toolbar-row button,.backup-row button{font-size:.7rem;padding-left:4px;padding-right:4px}.stat{font-size:.64rem}.swipe-hint{display:none}.form-grid{grid-template-columns:1fr}h1{font-size:1.05rem}}
-</style></head><body><div class="wrap"><div class="top" id="topHeader"><div class="top-inner"><h1>In-Tray Tracker</h1></div></div><div class="toolbar"><div class="toolbar-row"><input id="searchInput" type="text" placeholder="Search"/><select id="filterStatus"><option value="all">All</option><option value="good">Good</option><option value="warning">Needs Attention</option><option value="overdue">Overdue</option></select><button id="toggleFormBtn">Add</button></div></div><div class="backup"><div class="backup-row"><button id="undoBtn" class="secondary" disabled>Undo</button><button id="exportBtn" class="secondary">Export Backup</button><button id="importBtn" class="secondary">Import Backup</button><input id="importFile" class="hidden" type="file" accept="application/json,.json"/></div></div><div class="form hidden" id="formWrap"><div class="form-grid"><div class="field"><label for="nameInput">In-Tray Name</label><input id="nameInput" type="text" placeholder="Example: Personal Email" maxlength="80"/></div><div class="field"><label for="cadenceNumberInput">Cadence Number</label><input id="cadenceNumberInput" type="number" min="1" step="1" value="1"/></div><div class="field"><label for="cadenceUnitInput">Cadence Unit</label><select id="cadenceUnitInput"><option value="days">Days</option><option value="business-days">Business Days</option><option value="weeks">Weeks</option><option value="months" selected>Months</option><option value="years">Years</option></select></div></div><div class="field" style="margin-top:8px;"><label for="notesInput">Notes Optional</label><textarea id="notesInput" placeholder="Anything Helpful To Remember About This In-Tray"></textarea></div><div class="actions" style="margin-top:8px;"><button id="saveBtn">Save In-Tray</button><button id="deleteEditBtn" class="ghost danger hidden">Delete</button><button id="cancelBtn" class="secondary">Cancel</button></div></div><div class="stats" id="stats" title="Tap To Toggle Counts / Percentages"></div><div class="list" id="list"></div><div class="footer-note">Tap Stats To Toggle Counts/Percentages. Tap An In-Tray To Expand/Collapse. Swipe Left = Fully Cleared. Swipe Right = Worked On.</div></div><script>
-const STORAGE_KEY='in-tray-tracker-v1';const UNDO_KEY='in-tray-last-undo';const els={list:document.getElementById('list'),stats:document.getElementById('stats'),searchInput:document.getElementById('searchInput'),filterStatus:document.getElementById('filterStatus'),toggleFormBtn:document.getElementById('toggleFormBtn'),formWrap:document.getElementById('formWrap'),nameInput:document.getElementById('nameInput'),cadenceNumberInput:document.getElementById('cadenceNumberInput'),cadenceUnitInput:document.getElementById('cadenceUnitInput'),notesInput:document.getElementById('notesInput'),saveBtn:document.getElementById('saveBtn'),cancelBtn:document.getElementById('cancelBtn'),deleteEditBtn:document.getElementById('deleteEditBtn'),undoBtn:document.getElementById('undoBtn'),exportBtn:document.getElementById('exportBtn'),importBtn:document.getElementById('importBtn'),importFile:document.getElementById('importFile')};let intrays=load();let editingId=null;let expandedId=null;let lastUndo=loadUndo();let statsMode=localStorage.getItem('in-tray-stats-mode')||'count';if(!intrays.length){intrays=seedData();persist()}updateUndoButton();function seedData(){return[makeIntray('Personal Email',1,'days','Clear Inbox To Zero Or Close To Zero.'),makeIntray('Work Email',1,'business-days','Process Messages And Next Actions.'),makeIntray('Physical Papers',1,'weeks','Sort, Discard, File, Or Act.'),makeIntray('Downloads Folder',1,'months','Rename, File, Delete, Or Act.')]}function makeIntray(name,cadenceNumber,cadenceUnit,notes=''){return{id:cryptoRandomId(),name:toTitleCase(name),notes:toTitleCase(notes),cadenceNumber,cadenceUnit,createdAt:new Date().toISOString(),lastClearedAt:null,lastWorkedOnAt:null}}function cryptoRandomId(){return'i_'+Math.random().toString(36).slice(2,11)}function toTitleCase(str=''){return String(str).replace(/\w\S*/g,t=>t.charAt(0).toUpperCase()+t.slice(1).toLowerCase()).replace(/\bIn-tray\b/g,'In-Tray')}function load(){try{const raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch{return[]}}function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(intrays))}function loadUndo(){try{const raw=localStorage.getItem(UNDO_KEY);return raw?JSON.parse(raw):null}catch{return null}}function persistUndo(){if(lastUndo)localStorage.setItem(UNDO_KEY,JSON.stringify(lastUndo));else localStorage.removeItem(UNDO_KEY);updateUndoButton()}function setUndo(label){lastUndo={label,intrays:JSON.parse(JSON.stringify(intrays)),expandedId,at:nowISO()};persistUndo()}function updateUndoButton(){if(!els.undoBtn)return;els.undoBtn.disabled=!lastUndo;els.undoBtn.textContent='Undo'}function undoLast(){if(!lastUndo)return;intrays=lastUndo.intrays||[];expandedId=lastUndo.expandedId||null;lastUndo=null;persist();persistUndo();resetForm();showForm(false);render()}function nowISO(){return new Date().toISOString()}function unitToDays(unit){switch(unit){case'days':return 1;case'business-days':return 1;case'weeks':return 7;case'months':return 30.44;case'years':return 365.25;default:return 1}}function businessDaysSince(iso){if(!iso)return null;const start=new Date(iso);const end=new Date();start.setHours(0,0,0,0);end.setHours(0,0,0,0);let count=0;const d=new Date(start);d.setDate(d.getDate()+1);while(d<=end){const day=d.getDay();if(day!==0&&day!==6)count++;d.setDate(d.getDate()+1)}return count}function elapsedForCadence(item){return item.cadenceUnit==='business-days'?businessDaysSince(item.lastClearedAt):daysSince(item.lastClearedAt)}function cadenceDays(item){return item.cadenceNumber*unitToDays(item.cadenceUnit)}function daysSince(iso){if(!iso)return null;return Math.max(0,(Date.now()-new Date(iso).getTime())/86400000)}function getStatus(item){if(!item.lastClearedAt)return'overdue';const elapsed=elapsedForCadence(item),target=cadenceDays(item);if(elapsed<=target)return'good';if(elapsed<=target*2)return'warning';return'overdue'}function statusLabel(status,item){if(!item.lastClearedAt)return'Never Cleared';if(status==='good')return'Good';if(status==='warning')return'Needs Attention';return'Overdue'}function formatDateTime(iso){if(!iso)return'Not Yet';return new Date(iso).toLocaleString([],{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}function formatCadence(item){const n=item.cadenceNumber,u=item.cadenceUnit;if(u==='business-days')return`Every ${n} ${n===1?'Business Day':'Business Days'}`;const singular=u.endsWith('s')?u.slice(0,-1):u;return`Every ${n} ${toTitleCase(n===1?singular:u)}`}function activityTime(item){return new Date(item.lastWorkedOnAt||item.lastClearedAt||item.createdAt||0).getTime()}function sortIntrays(items){const priority={overdue:0,warning:1,good:2};return[...items].sort((a,b)=>{const sa=getStatus(a),sb=getStatus(b);if(priority[sa]!==priority[sb])return priority[sa]-priority[sb];const act=activityTime(a),bct=activityTime(b);if(act!==bct)return act-bct;return a.name.localeCompare(b.name)})}function filteredIntrays(){const q=els.searchInput.value.trim().toLowerCase(),statusFilter=els.filterStatus.value;return sortIntrays(intrays).filter(item=>{const text=[item.name,item.notes].join(' ').toLowerCase(),status=getStatus(item);return(!q||text.includes(q))&&(statusFilter==='all'||status===statusFilter)})}function pct(n,total){return total?`${Math.round((n/total)*100)}%`:'0%'}function renderStats(){const counts={total:intrays.length,good:0,warning:0,overdue:0};for(const item of intrays)counts[getStatus(item)]++;els.stats.innerHTML=statsMode==='percent'?`<div class="stat total">${counts.total} Total</div><div class="stat good">${pct(counts.good,counts.total)} Good</div><div class="stat warning">${pct(counts.warning,counts.total)} Needs Attention</div><div class="stat overdue">${pct(counts.overdue,counts.total)} Overdue</div>`:`<div class="stat total">${counts.total} Total</div><div class="stat good">${counts.good} Good</div><div class="stat warning">${counts.warning} Needs Attention</div><div class="stat overdue">${counts.overdue} Overdue</div>`}function render(){renderStats();updateUndoButton();const items=filteredIntrays();if(!items.length){els.list.innerHTML=`<div class="empty">No In-Trays Match Your Current Filter.</div>`;return}els.list.innerHTML=items.map(item=>item.id===expandedId?expandedCard(item):compactCard(item)).join('');attachHandlers()}function swipeBg(){return`<div class="swipe-bg"><div class="swipe-bg-left">Worked On</div><div class="swipe-bg-right">Fully Cleared</div></div>`}function compactCard(item){const status=getStatus(item),statusText=statusLabel(status,item);return`<div class="swipe-wrap">${swipeBg()}<div class="compact-card swipe-card status-${status}" data-id="${item.id}"><div class="compact-title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div><div class="swipe-hint">Tap To Expand • ← Fully Cleared • Worked On →</div></div></div>`}function expandedCard(item){const status=getStatus(item),statusText=statusLabel(status,item),elapsed=item.lastClearedAt?Math.floor(elapsedForCadence(item)):'—',elapsedLabel=item.cadenceUnit==='business-days'?'Business Days Since Full Clear':'Days Since Full Clear';return`<div class="swipe-wrap">${swipeBg()}<div class="card swipe-card status-${status}" data-id="${item.id}"><div class="card-toggle" data-id="${item.id}"><div class="card-top"><div class="title-row"><div class="title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div></div><div class="meta"><div class="meta-row"><div class="meta-label">Cadence</div><div class="meta-value">${formatCadence(item)}</div></div><div class="meta-row"><div class="meta-label">${elapsedLabel}</div><div class="meta-value">${elapsed}</div></div><div class="meta-row"><div class="meta-label">Last Fully Cleared</div><div class="meta-value">${formatDateTime(item.lastClearedAt)}</div></div><div class="meta-row"><div class="meta-label">Last Worked On</div><div class="meta-value">${formatDateTime(item.lastWorkedOnAt)}</div></div></div>${item.notes?`<div class="notes">${escapeHtml(item.notes)}</div>`:``}</div></div><div class="card-actions"><button class="small" onclick="markCleared('${item.id}')">Fully Cleared</button><button class="small secondary" onclick="markWorkedOn('${item.id}')">Worked On</button><button class="small secondary" onclick="startEdit('${item.id}')">Edit</button></div></div></div>`}function attachHandlers(){document.querySelectorAll('.swipe-card').forEach(card=>{let startX=0,startY=0;card.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;startY=e.touches[0].clientY;card.dataset.swiped='0';card.style.transition='none'},{passive:true});card.addEventListener('touchmove',e=>{const dx=e.touches[0].clientX-startX,dy=e.touches[0].clientY-startY;if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)*1.2){card.dataset.swiped='1';card.style.transform=`translateX(${Math.max(-135,Math.min(135,dx))}px)`}},{passive:true});card.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX,id=card.dataset.id;card.style.transition='transform .24s cubic-bezier(.2,.8,.2,1)';if(dx<-85){card.style.transform='translateX(-135px)';setTimeout(()=>markCleared(id),90);return}if(dx>85){card.style.transform='translateX(135px)';setTimeout(()=>markWorkedOn(id),90);return}card.style.transform='translateX(0)';setTimeout(()=>{card.style.transition='';card.dataset.swiped='0'},260)});card.addEventListener('click',()=>{if(card.dataset.swiped==='1')return;if(card.classList.contains('compact-card')){const id=card.dataset.id;expandedId=expandedId===id?null:id;render()}})});document.querySelectorAll('.card-toggle').forEach(el=>el.addEventListener('click',()=>{const card=el.closest('.swipe-card');if(card&&card.dataset.swiped==='1')return;expandedId=null;render()}))}function escapeHtml(str=''){return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;")}function resetForm(){editingId=null;els.nameInput.value='';els.cadenceNumberInput.value=1;els.cadenceUnitInput.value='months';els.notesInput.value='';els.saveBtn.textContent='Save In-Tray';els.deleteEditBtn.classList.add('hidden')}function showForm(show=true){els.formWrap.classList.toggle('hidden',!show);if(show)els.nameInput.focus()}function startEdit(id){const item=intrays.find(x=>x.id===id);if(!item)return;editingId=id;els.nameInput.value=item.name;els.cadenceNumberInput.value=item.cadenceNumber;els.cadenceUnitInput.value=item.cadenceUnit;els.notesInput.value=item.notes||'';els.saveBtn.textContent='Save Changes';els.deleteEditBtn.classList.remove('hidden');showForm(true);window.scrollTo({top:0,behavior:'smooth'})}function saveIntray(){const name=toTitleCase(els.nameInput.value.trim()),cadenceNumber=Number(els.cadenceNumberInput.value),cadenceUnit=els.cadenceUnitInput.value,notes=toTitleCase(els.notesInput.value.trim());if(!name){alert('Please Enter An In-Tray Name.');return}if(!Number.isFinite(cadenceNumber)||cadenceNumber<1){alert('Cadence Number Must Be 1 Or Greater.');return}setUndo(editingId?'Edit In-Tray':'Add In-Tray');if(editingId){const item=intrays.find(x=>x.id===editingId);if(!item)return;item.name=name;item.cadenceNumber=cadenceNumber;item.cadenceUnit=cadenceUnit;item.notes=notes}else{intrays.push({id:cryptoRandomId(),name,notes,cadenceNumber,cadenceUnit,createdAt:nowISO(),lastClearedAt:null,lastWorkedOnAt:null})}persist();resetForm();showForm(false);render()}function markCleared(id){const item=intrays.find(x=>x.id===id);if(!item)return;setUndo('Fully Cleared');item.lastClearedAt=nowISO();item.lastWorkedOnAt=nowISO();expandedId=null;persist();render()}function markWorkedOn(id){const item=intrays.find(x=>x.id===id);if(!item)return;setUndo('Worked On');item.lastWorkedOnAt=nowISO();expandedId=null;persist();render()}function deleteCurrentEdit(){if(!editingId)return;const item=intrays.find(x=>x.id===editingId);if(!item)return;if(!confirm(`Delete "${item.name}"?`))return;setUndo('Delete In-Tray');intrays=intrays.filter(x=>x.id!==editingId);persist();resetForm();showForm(false);render()}function exportBackup(){const backup={app:'in-tray-tracker',version:1,exportedAt:nowISO(),intrays};const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');const stamp=new Date().toISOString().slice(0,10);a.href=url;a.download=`in-tray-tracker-backup-${stamp}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}function importBackupFile(file){const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result),imported=Array.isArray(data)?data:data.intrays;if(!Array.isArray(imported))throw new Error('Invalid Backup File');const clean=imported.map(x=>({id:x.id||cryptoRandomId(),name:toTitleCase(x.name||'Untitled In-Tray'),notes:toTitleCase(x.notes||''),cadenceNumber:Number(x.cadenceNumber)||1,cadenceUnit:['days','business-days','weeks','months','years'].includes(x.cadenceUnit)?x.cadenceUnit:'months',createdAt:x.createdAt||nowISO(),lastClearedAt:x.lastClearedAt||null,lastWorkedOnAt:x.lastWorkedOnAt||null}));if(!confirm(`Import ${clean.length} In-Trays? This Will Replace Your Current List.`))return;setUndo('Import Backup');intrays=clean;persist();resetForm();showForm(false);render();alert('Backup Imported.')}catch(e){alert('Could Not Import Backup. Make Sure You Selected A Valid In-Tray Tracker JSON Backup File.')}};reader.readAsText(file)}els.toggleFormBtn.addEventListener('click',()=>{const hidden=els.formWrap.classList.contains('hidden');if(hidden){resetForm();showForm(true)}else{showForm(false)}});els.saveBtn.addEventListener('click',saveIntray);els.deleteEditBtn.addEventListener('click',deleteCurrentEdit);els.cancelBtn.addEventListener('click',()=>{resetForm();showForm(false)});els.undoBtn.addEventListener('click',undoLast);els.searchInput.addEventListener('input',render);els.filterStatus.addEventListener('change',render);els.stats.addEventListener('click',()=>{statsMode=statsMode==='count'?'percent':'count';localStorage.setItem('in-tray-stats-mode',statsMode);renderStats()});els.exportBtn.addEventListener('click',exportBackup);els.importBtn.addEventListener('click',()=>els.importFile.click());els.importFile.addEventListener('change',e=>{const file=e.target.files&&e.target.files[0];if(file)importBackupFile(file);els.importFile.value=''});window.markCleared=markCleared;window.markWorkedOn=markWorkedOn;window.startEdit=startEdit;render();
-</script></body></html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
+    <link rel="icon" type="image/png" href="apple-touch-icon.png?v=2" />
+    <link rel="shortcut icon" type="image/png" href="apple-touch-icon.png?v=2" />
+    <link rel="stylesheet" href="mobile-bg-fix.css" />
+    <title>In-Tray Tracker</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --card: rgba(255, 255, 255, 0.085);
+        --card-strong: rgba(255, 255, 255, 0.14);
+        --field: rgba(255, 255, 255, 0.07);
+        --text: #f7f7fb;
+        --muted: rgba(235, 235, 245, 0.64);
+        --border: rgba(255, 255, 255, 0.18);
+        --border-soft: rgba(255, 255, 255, 0.11);
+        --good: rgba(48, 209, 88, 0.34);
+        --warning: rgba(255, 159, 10, 0.38);
+        --overdue: rgba(255, 69, 58, 0.4);
+        --good-text: #dcfce7;
+        --warning-text: #fff3cf;
+        --overdue-text: #ffe4e4;
+        --accent: rgba(255, 255, 255, 0.92);
+        --accent-text: #09090b;
+        --shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+        --radius: 22px;
+        --blur: saturate(180%) blur(24px);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        line-height: 1.25;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 10px 8px 34px;
+      }
+
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: calc(env(safe-area-inset-top) + 7px) 0 7px;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .top-inner {
+        max-height: 24px;
+      }
+
+      h1 {
+        margin: 0;
+        width: 100%;
+        font-size: 1.05rem;
+        font-weight: 900;
+        letter-spacing: -0.015em;
+        line-height: 1;
+        text-align: center;
+        text-shadow: 0 10px 28px rgba(0, 0, 0, 0.44);
+      }
+
+      .toolbar,
+      .form,
+      .stats,
+      .backup,
+      .empty {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.135), rgba(255, 255, 255, 0.06));
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.17);
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+        border-radius: var(--radius);
+        margin: 7px 0;
+      }
+
+      .toolbar,
+      .stats,
+      .backup {
+        padding: 6px;
+      }
+
+      .stats {
+        cursor: pointer;
+      }
+
+      .toolbar-row,
+      .backup-row {
+        display: grid;
+        gap: 6px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .toolbar-row input,
+      .toolbar-row select,
+      .toolbar-row button,
+      .backup-row button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .form {
+        padding: 12px;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 2fr 1.1fr 1fr;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      label {
+        font-size: 0.76rem;
+        color: var(--muted);
+        font-weight: 750;
+        letter-spacing: 0.01em;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        font: inherit;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 15px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
+        color: var(--text);
+        min-height: 40px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 18px rgba(0, 0, 0, 0.16);
+        outline: none;
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: rgba(255, 255, 255, 0.38);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+
+      textarea {
+        min-height: 70px;
+        resize: vertical;
+      }
+
+      button {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 15px;
+        min-height: 40px;
+        padding: 9px 10px;
+        cursor: pointer;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.075));
+        color: var(--text);
+        font-weight: 780;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 8px 18px rgba(0, 0, 0, 0.16);
+        transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+      }
+
+      button:active {
+        transform: scale(0.985);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+      }
+
+      button.secondary {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.055));
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 8px 18px rgba(0, 0, 0, 0.14);
+      }
+
+      button.ghost {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border: 1px solid var(--border-soft);
+      }
+
+      button.small {
+        min-height: 34px;
+        padding: 7px 9px;
+        font-size: 0.88rem;
+        border-radius: 13px;
+        flex: 1;
+      }
+
+      button:disabled {
+        opacity: 0.42;
+        cursor: not-allowed;
+      }
+
+      #toggleFormBtn {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.78));
+        color: #09090b;
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        font-weight: 900;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: end;
+      }
+
+      .stats {
+        display: grid;
+        gap: 5px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .stat {
+        padding: 6px 2px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        text-align: center;
+        font-weight: 850;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 5px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .stat.total {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.06));
+        color: #f4f4f7;
+      }
+
+      .stat.good {
+        background: var(--good);
+        color: var(--good-text);
+      }
+
+      .stat.warning {
+        background: var(--warning);
+        color: var(--warning-text);
+      }
+
+      .stat.overdue {
+        background: var(--overdue);
+        color: var(--overdue-text);
+      }
+
+      .list {
+        display: grid;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .empty {
+        border-style: dashed;
+        padding: 22px 14px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .card,
+      .compact-card,
+      .swipe-card.status-good,
+      .swipe-card.status-warning,
+      .swipe-card.status-overdue {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+        backdrop-filter: saturate(185%) blur(26px);
+        -webkit-backdrop-filter: saturate(185%) blur(26px);
+        border-radius: 21px;
+        overflow: hidden;
+      }
+
+      .swipe-wrap {
+        position: relative;
+        border-radius: 21px;
+        overflow: hidden;
+        background: transparent !important;
+      }
+
+      .swipe-bg {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 900;
+        font-size: 0.86rem;
+        color: #fff;
+        pointer-events: none;
+        background: transparent !important;
+      }
+
+      .swipe-bg-left,
+      .swipe-bg-right {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background: transparent !important;
+      }
+
+      .swipe-bg-left {
+        padding-left: 14px;
+        width: 50%;
+      }
+
+      .swipe-bg-right {
+        justify-content: flex-end;
+        padding-right: 14px;
+        width: 50%;
+        margin-left: auto;
+      }
+
+      .compact-card,
+      .swipe-card {
+        position: relative;
+        z-index: 1;
+        touch-action: pan-y;
+        user-select: none;
+        transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.24s ease;
+      }
+
+      .compact-card {
+        padding: 10px 11px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .compact-title {
+        font-size: 1rem;
+        font-weight: 850;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .swipe-hint {
+        font-size: 0.68rem;
+        color: rgba(255, 255, 255, 0.66);
+        grid-column: 1 / -1;
+        margin-top: -3px;
+      }
+
+      .card-top {
+        padding: 11px 11px 8px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .card-toggle {
+        cursor: pointer;
+      }
+
+      .title-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .title {
+        font-size: 1.03rem;
+        font-weight: 880;
+        letter-spacing: -0.015em;
+      }
+
+      .badge {
+        white-space: nowrap;
+        font-size: 0.75rem;
+        font-weight: 850;
+        padding: 5px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.18);
+        color: var(--text);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 6px 14px rgba(0, 0, 0, 0.14);
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+      }
+
+      .badge.good {
+        background: var(--good);
+        color: var(--good-text);
+      }
+
+      .badge.warning {
+        background: var(--warning);
+        color: var(--warning-text);
+      }
+
+      .badge.overdue {
+        background: var(--overdue);
+        color: var(--overdue-text);
+      }
+
+      .meta {
+        display: grid;
+        gap: 5px;
+        font-size: 0.88rem;
+      }
+
+      .meta-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        padding: 7px 9px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+      }
+
+      .meta-label {
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 0.76rem;
+        font-weight: 800;
+      }
+
+      .meta-value {
+        text-align: right;
+        font-weight: 680;
+        color: var(--text);
+        overflow-wrap: anywhere;
+      }
+
+      .notes {
+        color: rgba(244, 244, 245, 0.9);
+        font-size: 0.88rem;
+        white-space: pre-wrap;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        padding: 8px 9px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        backdrop-filter: var(--blur);
+        -webkit-backdrop-filter: var(--blur);
+      }
+
+      .card-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 7px;
+        padding: 0 11px 11px;
+      }
+
+      .footer-note {
+        margin-top: 12px;
+        font-size: 0.78rem;
+        color: rgba(235, 235, 245, 0.5);
+        text-align: center;
+        line-height: 1.35;
+      }
+
+      .danger {
+        color: #ffb4ae;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 380px) {
+        .toolbar-row input,
+        .toolbar-row select,
+        .toolbar-row button,
+        .backup-row button {
+          font-size: 0.7rem;
+          padding-left: 4px;
+          padding-right: 4px;
+        }
+
+        .stat {
+          font-size: 0.64rem;
+        }
+
+        .swipe-hint {
+          display: none;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 1.05rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top" id="topHeader">
+        <div class="top-inner">
+          <h1>In-Tray Tracker</h1>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-row">
+          <input id="searchInput" type="text" placeholder="Search" />
+          <select id="filterStatus">
+            <option value="all">All</option>
+            <option value="good">Good</option>
+            <option value="warning">Needs Attention</option>
+            <option value="overdue">Overdue</option>
+          </select>
+          <button id="toggleFormBtn">Add</button>
+        </div>
+      </div>
+
+      <div class="backup">
+        <div class="backup-row">
+          <button id="undoBtn" class="secondary" disabled>Undo</button>
+          <button id="exportBtn" class="secondary">Export Backup</button>
+          <button id="importBtn" class="secondary">Import Backup</button>
+          <input id="importFile" class="hidden" type="file" accept="application/json,.json" />
+        </div>
+      </div>
+
+      <div class="form hidden" id="formWrap">
+        <div class="form-grid">
+          <div class="field">
+            <label for="nameInput">In-Tray Name</label>
+            <input id="nameInput" type="text" placeholder="Example: Personal Email" maxlength="80" />
+          </div>
+          <div class="field">
+            <label for="cadenceNumberInput">Cadence Number</label>
+            <input id="cadenceNumberInput" type="number" min="1" step="1" value="1" />
+          </div>
+          <div class="field">
+            <label for="cadenceUnitInput">Cadence Unit</label>
+            <select id="cadenceUnitInput">
+              <option value="days">Days</option>
+              <option value="business-days">Business Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months" selected>Months</option>
+              <option value="years">Years</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:8px;">
+          <label for="notesInput">Notes Optional</label>
+          <textarea id="notesInput" placeholder="Anything Helpful To Remember About This In-Tray"></textarea>
+        </div>
+
+        <div class="actions" style="margin-top:8px;">
+          <button id="saveBtn">Save In-Tray</button>
+          <button id="deleteEditBtn" class="ghost danger hidden">Delete</button>
+          <button id="cancelBtn" class="secondary">Cancel</button>
+        </div>
+      </div>
+
+      <div class="stats" id="stats" title="Tap To Toggle Counts / Percentages"></div>
+      <div class="list" id="list"></div>
+      <div class="footer-note">Tap Stats To Toggle Counts/Percentages. Tap An In-Tray To Expand/Collapse. Swipe Left = Fully Cleared. Swipe Right = Worked On.</div>
+    </div>
+
+    <script>
+      const STORAGE_KEY = 'in-tray-tracker-v1';
+      const UNDO_KEY = 'in-tray-last-undo';
+      const els = {
+        list: document.getElementById('list'),
+        stats: document.getElementById('stats'),
+        searchInput: document.getElementById('searchInput'),
+        filterStatus: document.getElementById('filterStatus'),
+        toggleFormBtn: document.getElementById('toggleFormBtn'),
+        formWrap: document.getElementById('formWrap'),
+        nameInput: document.getElementById('nameInput'),
+        cadenceNumberInput: document.getElementById('cadenceNumberInput'),
+        cadenceUnitInput: document.getElementById('cadenceUnitInput'),
+        notesInput: document.getElementById('notesInput'),
+        saveBtn: document.getElementById('saveBtn'),
+        cancelBtn: document.getElementById('cancelBtn'),
+        deleteEditBtn: document.getElementById('deleteEditBtn'),
+        undoBtn: document.getElementById('undoBtn'),
+        exportBtn: document.getElementById('exportBtn'),
+        importBtn: document.getElementById('importBtn'),
+        importFile: document.getElementById('importFile')
+      };
+
+      let intrays = load();
+      let editingId = null;
+      let expandedId = null;
+      let lastUndo = loadUndo();
+      let statsMode = localStorage.getItem('in-tray-stats-mode') || 'count';
+
+      if (!intrays.length) {
+        intrays = seedData();
+        persist();
+      }
+
+      updateUndoButton();
+
+      function seedData() {
+        return [
+          makeIntray('Personal Email', 1, 'days', 'Clear Inbox To Zero Or Close To Zero.'),
+          makeIntray('Work Email', 1, 'business-days', 'Process Messages And Next Actions.'),
+          makeIntray('Physical Papers', 1, 'weeks', 'Sort, Discard, File, Or Act.'),
+          makeIntray('Downloads Folder', 1, 'months', 'Rename, File, Delete, Or Act.')
+        ];
+      }
+
+      function makeIntray(name, cadenceNumber, cadenceUnit, notes = '') {
+        return {
+          id: cryptoRandomId(),
+          name: toTitleCase(name),
+          notes: toTitleCase(notes),
+          cadenceNumber,
+          cadenceUnit,
+          createdAt: new Date().toISOString(),
+          lastClearedAt: null,
+          lastWorkedOnAt: null
+        };
+      }
+
+      function cryptoRandomId() {
+        return 'i_' + Math.random().toString(36).slice(2, 11);
+      }
+
+      function toTitleCase(str = '') {
+        return String(str)
+          .replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.slice(1).toLowerCase())
+          .replace(/\bIn-tray\b/g, 'In-Tray');
+      }
+
+      function load() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function persist() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(intrays));
+      }
+
+      function loadUndo() {
+        try {
+          const raw = localStorage.getItem(UNDO_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
+
+      function persistUndo() {
+        if (lastUndo) localStorage.setItem(UNDO_KEY, JSON.stringify(lastUndo));
+        else localStorage.removeItem(UNDO_KEY);
+        updateUndoButton();
+      }
+
+      function setUndo(label) {
+        lastUndo = {
+          label,
+          intrays: JSON.parse(JSON.stringify(intrays)),
+          expandedId,
+          at: nowISO()
+        };
+        persistUndo();
+      }
+
+      function updateUndoButton() {
+        if (!els.undoBtn) return;
+        els.undoBtn.disabled = !lastUndo;
+        els.undoBtn.textContent = 'Undo';
+      }
+
+      function undoLast() {
+        if (!lastUndo) return;
+        intrays = lastUndo.intrays || [];
+        expandedId = lastUndo.expandedId || null;
+        lastUndo = null;
+        persist();
+        persistUndo();
+        resetForm();
+        showForm(false);
+        render();
+      }
+
+      function nowISO() {
+        return new Date().toISOString();
+      }
+
+      function unitToDays(unit) {
+        switch (unit) {
+          case 'days': return 1;
+          case 'business-days': return 1;
+          case 'weeks': return 7;
+          case 'months': return 30.44;
+          case 'years': return 365.25;
+          default: return 1;
+        }
+      }
+
+      function businessDaysSince(iso) {
+        if (!iso) return null;
+        const start = new Date(iso);
+        const end = new Date();
+        start.setHours(0, 0, 0, 0);
+        end.setHours(0, 0, 0, 0);
+        let count = 0;
+        const d = new Date(start);
+        d.setDate(d.getDate() + 1);
+        while (d <= end) {
+          const day = d.getDay();
+          if (day !== 0 && day !== 6) count++;
+          d.setDate(d.getDate() + 1);
+        }
+        return count;
+      }
+
+      function elapsedForCadence(item) {
+        return item.cadenceUnit === 'business-days' ? businessDaysSince(item.lastClearedAt) : daysSince(item.lastClearedAt);
+      }
+
+      function cadenceDays(item) {
+        return item.cadenceNumber * unitToDays(item.cadenceUnit);
+      }
+
+      function daysSince(iso) {
+        if (!iso) return null;
+        return Math.max(0, (Date.now() - new Date(iso).getTime()) / 86400000);
+      }
+
+      function getStatus(item) {
+        if (!item.lastClearedAt) return 'overdue';
+        const elapsed = elapsedForCadence(item), target = cadenceDays(item);
+        if (elapsed <= target) return 'good';
+        if (elapsed <= target * 2) return 'warning';
+        return 'overdue';
+      }
+
+      function statusLabel(status, item) {
+        if (!item.lastClearedAt) return 'Never Cleared';
+        if (status === 'good') return 'Good';
+        if (status === 'warning') return 'Needs Attention';
+        return 'Overdue';
+      }
+
+      function formatDateTime(iso) {
+        if (!iso) return 'Not Yet';
+        return new Date(iso).toLocaleString([], {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit'
+        });
+      }
+
+      function formatCadence(item) {
+        const n = item.cadenceNumber, u = item.cadenceUnit;
+        if (u === 'business-days') return `Every ${n} ${n === 1 ? 'Business Day' : 'Business Days'}`;
+        const singular = u.endsWith('s') ? u.slice(0, -1) : u;
+        return `Every ${n} ${toTitleCase(n === 1 ? singular : u)}`;
+      }
+
+      function activityTime(item) {
+        return new Date(item.lastWorkedOnAt || item.lastClearedAt || item.createdAt || 0).getTime();
+      }
+
+      function sortIntrays(items) {
+        const priority = { overdue: 0, warning: 1, good: 2 };
+        return [...items].sort((a, b) => {
+          const sa = getStatus(a), sb = getStatus(b);
+          if (priority[sa] !== priority[sb]) return priority[sa] - priority[sb];
+          const act = activityTime(a), bct = activityTime(b);
+          if (act !== bct) return act - bct;
+          return a.name.localeCompare(b.name);
+        });
+      }
+
+      function filteredIntrays() {
+        const q = els.searchInput.value.trim().toLowerCase(), statusFilter = els.filterStatus.value;
+        return sortIntrays(intrays).filter(item => {
+          const text = [item.name, item.notes].join(' ').toLowerCase(), status = getStatus(item);
+          return (!q || text.includes(q)) && (statusFilter === 'all' || status === statusFilter);
+        });
+      }
+
+      function pct(n, total) {
+        return total ? `${Math.round((n / total) * 100)}%` : '0%';
+      }
+
+      function renderStats() {
+        const counts = { total: intrays.length, good: 0, warning: 0, overdue: 0 };
+        for (const item of intrays) counts[getStatus(item)]++;
+        els.stats.innerHTML = statsMode === 'percent'
+          ? `<div class="stat total">${counts.total} Total</div><div class="stat good">${pct(counts.good, counts.total)} Good</div><div class="stat warning">${pct(counts.warning, counts.total)} Needs Attention</div><div class="stat overdue">${pct(counts.overdue, counts.total)} Overdue</div>`
+          : `<div class="stat total">${counts.total} Total</div><div class="stat good">${counts.good} Good</div><div class="stat warning">${counts.warning} Needs Attention</div><div class="stat overdue">${counts.overdue} Overdue</div>`;
+      }
+
+      function render() {
+        renderStats();
+        updateUndoButton();
+        const items = filteredIntrays();
+        if (!items.length) {
+          els.list.innerHTML = `<div class="empty">No In-Trays Match Your Current Filter.</div>`;
+          return;
+        }
+        els.list.innerHTML = items.map(item => item.id === expandedId ? expandedCard(item) : compactCard(item)).join('');
+        attachHandlers();
+      }
+
+      function swipeBg() {
+        return `<div class="swipe-bg"><div class="swipe-bg-left">Worked On</div><div class="swipe-bg-right">Fully Cleared</div></div>`;
+      }
+
+      function compactCard(item) {
+        const status = getStatus(item), statusText = statusLabel(status, item);
+        return `<div class="swipe-wrap">${swipeBg()}<div class="compact-card swipe-card status-${status}" data-id="${item.id}"><div class="compact-title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div><div class="swipe-hint">Tap To Expand • ← Fully Cleared • Worked On →</div></div></div>`;
+      }
+
+      function expandedCard(item) {
+        const status = getStatus(item), statusText = statusLabel(status, item), elapsed = item.lastClearedAt ? Math.floor(elapsedForCadence(item)) : '—', elapsedLabel = item.cadenceUnit === 'business-days' ? 'Business Days Since Full Clear' : 'Days Since Full Clear';
+        return `<div class="swipe-wrap">${swipeBg()}<div class="card swipe-card status-${status}" data-id="${item.id}"><div class="card-toggle" data-id="${item.id}"><div class="card-top"><div class="title-row"><div class="title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div></div><div class="meta"><div class="meta-row"><div class="meta-label">Cadence</div><div class="meta-value">${formatCadence(item)}</div></div><div class="meta-row"><div class="meta-label">${elapsedLabel}</div><div class="meta-value">${elapsed}</div></div><div class="meta-row"><div class="meta-label">Last Fully Cleared</div><div class="meta-value">${formatDateTime(item.lastClearedAt)}</div></div><div class="meta-row"><div class="meta-label">Last Worked On</div><div class="meta-value">${formatDateTime(item.lastWorkedOnAt)}</div></div></div>${item.notes ? `<div class="notes">${escapeHtml(item.notes)}</div>` : ``}</div></div><div class="card-actions"><button class="small" onclick="markCleared('${item.id}')">Fully Cleared</button><button class="small secondary" onclick="markWorkedOn('${item.id}')">Worked On</button><button class="small secondary" onclick="startEdit('${item.id}')">Edit</button></div></div></div>`;
+      }
+
+      function attachHandlers() {
+        document.querySelectorAll('.swipe-card').forEach(card => {
+          let startX = 0, startY = 0;
+          card.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            card.dataset.swiped = '0';
+            card.style.transition = 'none';
+          }, { passive: true });
+
+          card.addEventListener('touchmove', e => {
+            const dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY;
+            if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+              card.dataset.swiped = '1';
+              card.style.transform = `translateX(${Math.max(-135, Math.min(135, dx))}px)`;
+            }
+          }, { passive: true });
+
+          card.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - startX, id = card.dataset.id;
+            card.style.transition = 'transform .24s cubic-bezier(.2,.8,.2,1)';
+            if (dx < -85) {
+              card.style.transform = 'translateX(-135px)';
+              setTimeout(() => markCleared(id), 90);
+              return;
+            }
+            if (dx > 85) {
+              card.style.transform = 'translateX(135px)';
+              setTimeout(() => markWorkedOn(id), 90);
+              return;
+            }
+            card.style.transform = 'translateX(0)';
+            setTimeout(() => {
+              card.style.transition = '';
+              card.dataset.swiped = '0';
+            }, 260);
+          });
+
+          card.addEventListener('click', () => {
+            if (card.dataset.swiped === '1') return;
+            if (card.classList.contains('compact-card')) {
+              const id = card.dataset.id;
+              expandedId = expandedId === id ? null : id;
+              render();
+            }
+          });
+        });
+
+        document.querySelectorAll('.card-toggle').forEach(el => el.addEventListener('click', () => {
+          const card = el.closest('.swipe-card');
+          if (card && card.dataset.swiped === '1') return;
+          expandedId = null;
+          render();
+        }));
+      }
+
+      function escapeHtml(str = '') {
+        return String(str)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#39;');
+      }
+
+      function resetForm() {
+        editingId = null;
+        els.nameInput.value = '';
+        els.cadenceNumberInput.value = 1;
+        els.cadenceUnitInput.value = 'months';
+        els.notesInput.value = '';
+        els.saveBtn.textContent = 'Save In-Tray';
+        els.deleteEditBtn.classList.add('hidden');
+      }
+
+      function showForm(show = true) {
+        els.formWrap.classList.toggle('hidden', !show);
+        if (show) els.nameInput.focus();
+      }
+
+      function startEdit(id) {
+        const item = intrays.find(x => x.id === id);
+        if (!item) return;
+        editingId = id;
+        els.nameInput.value = item.name;
+        els.cadenceNumberInput.value = item.cadenceNumber;
+        els.cadenceUnitInput.value = item.cadenceUnit;
+        els.notesInput.value = item.notes || '';
+        els.saveBtn.textContent = 'Save Changes';
+        els.deleteEditBtn.classList.remove('hidden');
+        showForm(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function saveIntray() {
+        const name = toTitleCase(els.nameInput.value.trim()), cadenceNumber = Number(els.cadenceNumberInput.value), cadenceUnit = els.cadenceUnitInput.value, notes = toTitleCase(els.notesInput.value.trim());
+        if (!name) {
+          alert('Please Enter An In-Tray Name.');
+          return;
+        }
+        if (!Number.isFinite(cadenceNumber) || cadenceNumber < 1) {
+          alert('Cadence Number Must Be 1 Or Greater.');
+          return;
+        }
+        setUndo(editingId ? 'Edit In-Tray' : 'Add In-Tray');
+        if (editingId) {
+          const item = intrays.find(x => x.id === editingId);
+          if (!item) return;
+          item.name = name;
+          item.cadenceNumber = cadenceNumber;
+          item.cadenceUnit = cadenceUnit;
+          item.notes = notes;
+        } else {
+          intrays.push({
+            id: cryptoRandomId(),
+            name,
+            notes,
+            cadenceNumber,
+            cadenceUnit,
+            createdAt: nowISO(),
+            lastClearedAt: null,
+            lastWorkedOnAt: null
+          });
+        }
+        persist();
+        resetForm();
+        showForm(false);
+        render();
+      }
+
+      function markCleared(id) {
+        const item = intrays.find(x => x.id === id);
+        if (!item) return;
+        setUndo('Fully Cleared');
+        item.lastClearedAt = nowISO();
+        item.lastWorkedOnAt = nowISO();
+        expandedId = null;
+        persist();
+        render();
+      }
+
+      function markWorkedOn(id) {
+        const item = intrays.find(x => x.id === id);
+        if (!item) return;
+        setUndo('Worked On');
+        item.lastWorkedOnAt = nowISO();
+        expandedId = null;
+        persist();
+        render();
+      }
+
+      function deleteCurrentEdit() {
+        if (!editingId) return;
+        const item = intrays.find(x => x.id === editingId);
+        if (!item) return;
+        if (!confirm(`Delete "${item.name}"?`)) return;
+        setUndo('Delete In-Tray');
+        intrays = intrays.filter(x => x.id !== editingId);
+        persist();
+        resetForm();
+        showForm(false);
+        render();
+      }
+
+      function exportBackup() {
+        const backup = { app: 'in-tray-tracker', version: 1, exportedAt: nowISO(), intrays };
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const stamp = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = `in-tray-tracker-backup-${stamp}.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function importBackupFile(file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const data = JSON.parse(reader.result), imported = Array.isArray(data) ? data : data.intrays;
+            if (!Array.isArray(imported)) throw new Error('Invalid Backup File');
+            const clean = imported.map(x => ({
+              id: x.id || cryptoRandomId(),
+              name: toTitleCase(x.name || 'Untitled In-Tray'),
+              notes: toTitleCase(x.notes || ''),
+              cadenceNumber: Number(x.cadenceNumber) || 1,
+              cadenceUnit: ['days', 'business-days', 'weeks', 'months', 'years'].includes(x.cadenceUnit) ? x.cadenceUnit : 'months',
+              createdAt: x.createdAt || nowISO(),
+              lastClearedAt: x.lastClearedAt || null,
+              lastWorkedOnAt: x.lastWorkedOnAt || null
+            }));
+            if (!confirm(`Import ${clean.length} In-Trays? This Will Replace Your Current List.`)) return;
+            setUndo('Import Backup');
+            intrays = clean;
+            persist();
+            resetForm();
+            showForm(false);
+            render();
+            alert('Backup Imported.');
+          } catch (e) {
+            alert('Could Not Import Backup. Make Sure You Selected A Valid In-Tray Tracker JSON Backup File.');
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      els.toggleFormBtn.addEventListener('click', () => {
+        const hidden = els.formWrap.classList.contains('hidden');
+        if (hidden) {
+          resetForm();
+          showForm(true);
+        } else {
+          showForm(false);
+        }
+      });
+      els.saveBtn.addEventListener('click', saveIntray);
+      els.deleteEditBtn.addEventListener('click', deleteCurrentEdit);
+      els.cancelBtn.addEventListener('click', () => {
+        resetForm();
+        showForm(false);
+      });
+      els.undoBtn.addEventListener('click', undoLast);
+      els.searchInput.addEventListener('input', render);
+      els.filterStatus.addEventListener('change', render);
+      els.stats.addEventListener('click', () => {
+        statsMode = statsMode === 'count' ? 'percent' : 'count';
+        localStorage.setItem('in-tray-stats-mode', statsMode);
+        renderStats();
+      });
+      els.exportBtn.addEventListener('click', exportBackup);
+      els.importBtn.addEventListener('click', () => els.importFile.click());
+      els.importFile.addEventListener('change', e => {
+        const file = e.target.files && e.target.files[0];
+        if (file) importBackupFile(file);
+        els.importFile.value = '';
+      });
+
+      window.markCleared = markCleared;
+      window.markWorkedOn = markWorkedOn;
+      window.startEdit = startEdit;
+      render();
+    </script>
+  </body>
+</html>
