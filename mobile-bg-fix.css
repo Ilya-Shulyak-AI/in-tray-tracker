@@ -28,6 +28,10 @@ body {
   position: relative;
 }
 
+.wrap {
+  padding-bottom: max(34px, calc(env(safe-area-inset-bottom) + 24px));
+}
+
 /* Fixed background layer for iOS Safari and desktop consistency. */
 body::before {
   content: "";
