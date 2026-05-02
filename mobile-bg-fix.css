@@ -139,3 +139,36 @@ select {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  .toolbar,
+  .backup,
+  .footer-note {
+    display: none;
+  }
+
+  .card,
+  .compact-card,
+  .swipe-card,
+  .meta-row,
+  .notes {
+    background: #fff !important;
+    border-color: #bbb !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+}
