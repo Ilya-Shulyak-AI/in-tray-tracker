@@ -9,6 +9,7 @@ body {
   position: relative;
 }
 
+/* Fixed background layer for iOS Safari and desktop consistency. */
 body::before {
   content: "";
   display: block;
@@ -21,7 +22,7 @@ body::before {
   transform: translateZ(0);
 }
 
-/* TRUE CLEAR GLASS */
+/* Clear glass cards. */
 .card,
 .compact-card,
 .swipe-card {
@@ -32,14 +33,14 @@ body::before {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18) !important;
 }
 
-/* REMOVE DARK BLOCKS */
+/* Remove internal dark blocks. */
 .meta-row,
 .notes {
   background: transparent !important;
   border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
-/* STATUS COLORS */
+/* Softer Apple-style status colors. */
 .badge.good {
   background: rgba(48, 209, 88, 0.28) !important;
 }
