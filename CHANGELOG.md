@@ -11,14 +11,21 @@
 - Added project documentation:
   - `README.md`
   - `TEST_CHECKLIST.md`
+  - `BROWSER_TEST_MATRIX.md`
   - `IMPLEMENTATION_BACKLOG.md`
   - `STABILIZATION_SUMMARY.md`
   - `KNOWN_LIMITATIONS.md`
   - `CHANGELOG.md`
+  - `ARCHITECTURE.md`
+  - `REFACTOR_PLAN.md`
+  - `CONTRIBUTING.md`
+  - `BACKUP_GUIDE.md`
+  - `ROLLBACK_GUIDE.md`
+  - `FILE_MAP.md`
 - Added rollback guidance to `README.md`.
 - Expanded manual regression testing coverage.
 - Created GitHub issue #1 for blocked deeper `index.html` and JavaScript hardening work.
 
 ## Remaining planned work
 
-See `IMPLEMENTATION_BACKLOG.md`, `KNOWN_LIMITATIONS.md`, and GitHub issue #1.
+See `IMPLEMENTATION_BACKLOG.md`, `KNOWN_LIMITATIONS.md`, `REFACTOR_PLAN.md`, and GitHub issue #1.
