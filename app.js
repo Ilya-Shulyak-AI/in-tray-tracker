@@ -297,27 +297,37 @@ function attachHandlers() {
         card.dataset.swiped = '0';
       }, 260);
     });
-
-    card.addEventListener('click', () => {
-      if (card.dataset.swiped === '1') return;
-      if (card.classList.contains('compact-card')) {
-        const id = card.dataset.id;
-        expandedId = expandedId === id ? null : id;
-        render();
-      }
-    });
-  });
-
-  document.querySelectorAll('.card-toggle').forEach(el => el.addEventListener('click', () => {
-    const card = el.closest('.swipe-card');
-    if (card && card.dataset.swiped === '1') return;
-    expandedId = null;
-    render();
-  }));
 }
 
-function handleCardActionClick(event) {
+function handleListClick(event) {
   const button = event.target.closest('button[data-action]');
+  if (button) {
+    const card = button.closest('.swipe-card');
+    if (!card) return;
+
+    event.stopPropagation();
+    const id = card.dataset.id;
+
+    if (button.dataset.action === 'cleared') markCleared(id);
+    if (button.dataset.action === 'worked-on') markWorkedOn(id);
+    if (button.dataset.action === 'edit') startEdit(id);
+    return;
+  }
+
+  const card = event.target.closest('.swipe-card');
+  if (!card || card.dataset.swiped === '1') return;
+
+  if (card.classList.contains('compact-card')) {
+    expandedId = expandedId === card.dataset.id ? null : card.dataset.id;
+    render();
+    return;
+  }
+
+  if (event.target.closest('.card-toggle')) {
+    expandedId = null;
+    render();
+  }
+}  const button = event.target.closest('button[data-action]');
   if (!button) return;
   const card = button.closest('.swipe-card');
   if (!card) return;
@@ -513,6 +523,6 @@ els.importFile.addEventListener('change', e => {
   if (file) importBackupFile(file);
   els.importFile.value = '';
 });
-els.list.addEventListener('click', handleCardActionClick);
+els.list.addEventListener('click', handleListClick);
 
 render();
