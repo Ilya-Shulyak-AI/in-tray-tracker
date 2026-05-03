@@ -257,7 +257,7 @@ function compactCard(item) {
 
 function expandedCard(item) {
   const status = getStatus(item), statusText = statusLabel(status, item), elapsed = item.lastClearedAt ? Math.floor(elapsedForCadence(item)) : '—', elapsedLabel = item.cadenceUnit === 'business-days' ? 'Business Days Since Full Clear' : 'Days Since Full Clear';
-  return `<div class="swipe-wrap">${swipeBg()}<div class="card swipe-card status-${status}" data-id="${item.id}"><div class="card-toggle" data-id="${item.id}"><div class="card-top"><div class="title-row"><div class="title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div></div><div class="meta"><div class="meta-row"><div class="meta-label">Cadence</div><div class="meta-value">${formatCadence(item)}</div></div><div class="meta-row"><div class="meta-label">${elapsedLabel}</div><div class="meta-value">${elapsed}</div></div><div class="meta-row"><div class="meta-label">Last Fully Cleared</div><div class="meta-value">${formatDateTime(item.lastClearedAt)}</div></div><div class="meta-row"><div class="meta-label">Last Worked On</div><div class="meta-value">${formatDateTime(item.lastWorkedOnAt)}</div></div></div>${item.notes ? `<div class="notes">${escapeHtml(item.notes)}</div>` : ``}</div></div><div class="card-actions"><button class="small" onclick="markCleared('${item.id}')">Fully Cleared</button><button class="small secondary" onclick="markWorkedOn('${item.id}')">Worked On</button><button class="small secondary" onclick="startEdit('${item.id}')">Edit</button></div></div></div>`;
+  return `<div class="swipe-wrap">${swipeBg()}<div class="card swipe-card status-${status}" data-id="${item.id}"><div class="card-toggle" data-id="${item.id}"><div class="card-top"><div class="title-row"><div class="title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div></div><div class="meta"><div class="meta-row"><div class="meta-label">Cadence</div><div class="meta-value">${formatCadence(item)}</div></div><div class="meta-row"><div class="meta-label">${elapsedLabel}</div><div class="meta-value">${elapsed}</div></div><div class="meta-row"><div class="meta-label">Last Fully Cleared</div><div class="meta-value">${formatDateTime(item.lastClearedAt)}</div></div><div class="meta-row"><div class="meta-label">Last Worked On</div><div class="meta-value">${formatDateTime(item.lastWorkedOnAt)}</div></div></div>${item.notes ? `<div class="notes">${escapeHtml(item.notes)}</div>` : ``}</div></div><div class="card-actions"><button class="small" data-action="cleared">Fully Cleared</button><button class="small secondary" data-action="worked-on">Worked On</button><button class="small secondary" data-action="edit">Edit</button></div></div></div>`;
 }
 
 function attachHandlers() {
@@ -314,6 +314,20 @@ function attachHandlers() {
     expandedId = null;
     render();
   }));
+}
+
+function handleCardActionClick(event) {
+  const button = event.target.closest('button[data-action]');
+  if (!button) return;
+  const card = button.closest('.swipe-card');
+  if (!card) return;
+
+  event.stopPropagation();
+  const id = card.dataset.id;
+
+  if (button.dataset.action === 'cleared') markCleared(id);
+  if (button.dataset.action === 'worked-on') markWorkedOn(id);
+  if (button.dataset.action === 'edit') startEdit(id);
 }
 
 function escapeHtml(str = '') {
@@ -499,8 +513,6 @@ els.importFile.addEventListener('change', e => {
   if (file) importBackupFile(file);
   els.importFile.value = '';
 });
+els.list.addEventListener('click', handleCardActionClick);
 
-window.markCleared = markCleared;
-window.markWorkedOn = markWorkedOn;
-window.startEdit = startEdit;
 render();
