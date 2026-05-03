@@ -122,6 +122,10 @@ h1 {
   gap: 6px;
 }
 
+.mt-8 {
+  margin-top: 8px;
+}
+
 label {
   font-size: 0.76rem;
   color: var(--muted);
