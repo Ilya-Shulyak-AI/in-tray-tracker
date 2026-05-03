@@ -297,6 +297,7 @@ function attachHandlers() {
         card.dataset.swiped = '0';
       }, 260);
     });
+  });
 }
 
 function handleListClick(event) {
@@ -327,17 +328,6 @@ function handleListClick(event) {
     expandedId = null;
     render();
   }
-}  const button = event.target.closest('button[data-action]');
-  if (!button) return;
-  const card = button.closest('.swipe-card');
-  if (!card) return;
-
-  event.stopPropagation();
-  const id = card.dataset.id;
-
-  if (button.dataset.action === 'cleared') markCleared(id);
-  if (button.dataset.action === 'worked-on') markWorkedOn(id);
-  if (button.dataset.action === 'edit') startEdit(id);
 }
 
 function escapeHtml(str = '') {
