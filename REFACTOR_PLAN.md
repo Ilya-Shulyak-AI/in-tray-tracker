@@ -1,12 +1,22 @@
 # Refactor Plan
 
-## Phase 1: Make files editable safely
+## Phase 0: Hard gate before runtime edits
 
 1. Obtain a verified complete copy of `index.html`.
-2. Extract inline CSS into `styles.css`.
-3. Extract inline JavaScript into `app.js`.
-4. Keep `index.html` as markup only.
-5. Confirm the app still loads after each extraction.
+2. Confirm the file includes the full `<head>` section.
+3. Confirm the file includes the complete inline `<style>` block.
+4. Confirm the file includes the complete app markup.
+5. Confirm the file includes the complete inline `<script>` block.
+6. Confirm the file ends with `</script>`, `</body>`, and `</html>`.
+
+Do not perform runtime refactors from truncated content.
+
+## Phase 1: Make files editable safely
+
+1. Extract inline CSS into `styles.css`.
+2. Extract inline JavaScript into `app.js`.
+3. Keep `index.html` as markup only.
+4. Confirm the app still loads after each extraction.
 
 ## Phase 2: Clean CSS cascade
 

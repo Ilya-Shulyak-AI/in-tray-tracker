@@ -1,5 +1,16 @@
 # Changelog
 
+## Runtime refactor setup
+
+- Created `runtime-refactor` branch.
+- Added `FULL_INDEX_REQUIRED.md`.
+- Added placeholder runtime files:
+  - `styles.css`
+  - `app.js`
+- Updated runtime task ordering so full `index.html` verification is the first gate.
+- Updated file map and backlog to reflect the runtime gate.
+- Created GitHub issue #2 for splitting runtime files from a verified full `index.html`.
+
 ## Stabilization pass
 
 - Restored the full app into `index.html`.
@@ -42,4 +53,4 @@
 
 ## Remaining planned work
 
-See `IMPLEMENTATION_BACKLOG.md`, `KNOWN_LIMITATIONS.md`, `REFACTOR_PLAN.md`, and GitHub issue #1.
+See `IMPLEMENTATION_BACKLOG.md`, `KNOWN_LIMITATIONS.md`, `REFACTOR_PLAN.md`, `FULL_INDEX_REQUIRED.md`, and GitHub issues #1 and #2.
