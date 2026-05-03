@@ -1,5 +1,8 @@
+// Constants
 const STORAGE_KEY = 'in-tray-tracker-v1';
 const UNDO_KEY = 'in-tray-last-undo';
+
+// DOM references
 const els = {
   list: document.getElementById('list'),
   stats: document.getElementById('stats'),
@@ -20,12 +23,14 @@ const els = {
   importFile: document.getElementById('importFile')
 };
 
+// State
 let intrays = load();
 let editingId = null;
 let expandedId = null;
 let lastUndo = loadUndo();
 let statsMode = localStorage.getItem('in-tray-stats-mode') || 'count';
 
+// Initial data setup
 if (!intrays.length) {
   intrays = seedData();
   persist();
@@ -33,6 +38,7 @@ if (!intrays.length) {
 
 updateUndoButton();
 
+// Seed/default data
 function seedData() {
   return [
     makeIntray('Personal Email', 1, 'days', 'Clear Inbox To Zero Or Close To Zero.'),
@@ -65,6 +71,7 @@ function toTitleCase(str = '') {
     .replace(/\bIn-tray\b/g, 'In-Tray');
 }
 
+// Storage helpers
 function load() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -121,6 +128,7 @@ function undoLast() {
   render();
 }
 
+// Date/cadence/status helpers
 function nowISO() {
   return new Date().toISOString();
 }
@@ -226,6 +234,7 @@ function pct(n, total) {
   return total ? `${Math.round((n / total) * 100)}%` : '0%';
 }
 
+// Render helpers
 function renderStats() {
   const counts = { total: intrays.length, good: 0, warning: 0, overdue: 0 };
   for (const item of intrays) counts[getStatus(item)]++;
@@ -260,6 +269,16 @@ function expandedCard(item) {
   return `<div class="swipe-wrap">${swipeBg()}<div class="card swipe-card status-${status}" data-id="${item.id}"><div class="card-toggle" data-id="${item.id}"><div class="card-top"><div class="title-row"><div class="title">${escapeHtml(item.name)}</div><div class="badge ${status}">${statusText}</div></div><div class="meta"><div class="meta-row"><div class="meta-label">Cadence</div><div class="meta-value">${formatCadence(item)}</div></div><div class="meta-row"><div class="meta-label">${elapsedLabel}</div><div class="meta-value">${elapsed}</div></div><div class="meta-row"><div class="meta-label">Last Fully Cleared</div><div class="meta-value">${formatDateTime(item.lastClearedAt)}</div></div><div class="meta-row"><div class="meta-label">Last Worked On</div><div class="meta-value">${formatDateTime(item.lastWorkedOnAt)}</div></div></div>${item.notes ? `<div class="notes">${escapeHtml(item.notes)}</div>` : ``}</div></div><div class="card-actions"><button class="small" data-action="cleared">Fully Cleared</button><button class="small secondary" data-action="worked-on">Worked On</button><button class="small secondary" data-action="edit">Edit</button></div></div></div>`;
 }
 
+function escapeHtml(str = '') {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+// Swipe and card event handlers
 function attachHandlers() {
   document.querySelectorAll('.swipe-card').forEach(card => {
     let startX = 0, startY = 0;
@@ -330,15 +349,7 @@ function handleListClick(event) {
   }
 }
 
-function escapeHtml(str = '') {
-  return String(str)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
+// Form/action handlers
 function resetForm() {
   editingId = null;
   els.nameInput.value = '';
@@ -438,6 +449,7 @@ function deleteCurrentEdit() {
   render();
 }
 
+// Import/export
 function exportBackup() {
   const backup = { app: 'in-tray-tracker', version: 1, exportedAt: nowISO(), intrays };
   const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
@@ -514,6 +526,7 @@ function importBackupFile(file) {
   reader.readAsText(file);
 }
 
+// Event listener wiring
 els.toggleFormBtn.addEventListener('click', () => {
   const hidden = els.formWrap.classList.contains('hidden');
   if (hidden) {
@@ -546,4 +559,5 @@ els.importFile.addEventListener('change', e => {
 });
 els.list.addEventListener('click', handleListClick);
 
+// Initial render
 render();
