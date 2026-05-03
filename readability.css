@@ -44,7 +44,7 @@ select option:hover {
   background-color: #2c2c33;
 }
 
-.swipe-wrap:has(.swipe-card[data-swiped="1"]) .swipe-bg-left,
-.swipe-wrap:has(.swipe-card[data-swiped="1"]) .swipe-bg-right {
+.swipe-wrap.swiping-right .swipe-bg-left,
+.swipe-wrap.swiping-left .swipe-bg-right {
   opacity: 1;
 }
