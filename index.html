@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="mobile-bg-fix.css" />
     <link rel="stylesheet" href="readability.css" />
+    <link rel="stylesheet" href="help-panel.css" />
     <title>In-Tray Tracker</title>
   </head>
   <body>
@@ -81,9 +82,61 @@
       <div class="stats" id="stats" title="Tap To Toggle Counts / Percentages"></div>
       <div class="list" id="list"></div>
       <div class="footer-note">Tap Stats To Toggle Counts/Percentages. Tap An In-Tray To Expand/Collapse. Swipe Left = Fully Cleared. Swipe Right = Worked On.</div>
+      <button id="helpOpenBtn" class="help-open" type="button" aria-haspopup="dialog" aria-controls="helpPanel" aria-label="Open app help">ⓘ</button>
+    </div>
+
+    <div id="helpPanel" class="help-panel hidden" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <div class="help-card">
+        <div class="help-top">
+          <h2 id="helpTitle">How To Use In-Tray Tracker</h2>
+          <button id="helpCloseBtn" class="help-close" type="button" aria-label="Close help">×</button>
+        </div>
+
+        <div class="help-content">
+          <section>
+            <h3>Purpose</h3>
+            <p>Use this app to track recurring in-trays, inboxes, folders, or information sources that need to be cleared or worked on regularly.</p>
+          </section>
+
+          <section>
+            <h3>Add Or Edit An In-Tray</h3>
+            <p>Tap <strong>Add</strong>, enter the in-tray name, choose how often it should be fully cleared, add optional notes, then tap <strong>Save In-Tray</strong>. Tap an existing card and choose <strong>Edit</strong> to update it.</p>
+          </section>
+
+          <section>
+            <h3>Daily Use</h3>
+            <ul>
+              <li>Tap a card to expand or collapse it.</li>
+              <li>Swipe left to mark it <strong>Fully Cleared</strong>.</li>
+              <li>Swipe right to mark it <strong>Worked On</strong>.</li>
+              <li>Use the buttons inside an expanded card if you prefer tapping instead of swiping.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Status Meaning</h3>
+            <ul>
+              <li><strong>Good</strong>: cleared within its cadence.</li>
+              <li><strong>Needs Attention</strong>: past its normal cadence.</li>
+              <li><strong>Overdue</strong>: far past cadence or never cleared.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Search, Filter, And Stats</h3>
+            <p>Use search to find an in-tray by name or notes. Use the status filter to show only certain items. Tap the stats bar to toggle between counts and percentages.</p>
+          </section>
+
+          <section>
+            <h3>Undo And Backups</h3>
+            <p><strong>Undo</strong> reverses the last major action. <strong>Export Backup</strong> saves your current list as a JSON file. <strong>Import Backup</strong> restores from a backup and replaces the current list.</p>
+          </section>
+        </div>
+      </div>
     </div>
 
     <script src="app.js"></script>
     <script src="preserve-name-input.js"></script>
+    <script src="help-panel.js"></script>
   </body>
 </html>
