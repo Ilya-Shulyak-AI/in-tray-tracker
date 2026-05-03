@@ -452,25 +452,56 @@ function exportBackup() {
   URL.revokeObjectURL(url);
 }
 
+const VALID_CADENCE_UNITS = ['days', 'business-days', 'weeks', 'months', 'years'];
+
+function isPlainObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function cleanImportedDate(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
+function cleanImportedIntray(raw, usedIds) {
+  if (!isPlainObject(raw)) throw new Error('Invalid In-Tray');
+
+  const cadenceNumber = Number(raw.cadenceNumber);
+  const cadenceUnit = VALID_CADENCE_UNITS.includes(raw.cadenceUnit) ? raw.cadenceUnit : 'months';
+  let id = typeof raw.id === 'string' && raw.id.trim() ? raw.id.trim() : cryptoRandomId();
+
+  while (usedIds.has(id)) id = cryptoRandomId();
+  usedIds.add(id);
+
+  return {
+    id,
+    name: toTitleCase(raw.name || 'Untitled In-Tray'),
+    notes: toTitleCase(raw.notes || ''),
+    cadenceNumber: Number.isFinite(cadenceNumber) && cadenceNumber >= 1 ? cadenceNumber : 1,
+    cadenceUnit,
+    createdAt: cleanImportedDate(raw.createdAt) || nowISO(),
+    lastClearedAt: cleanImportedDate(raw.lastClearedAt),
+    lastWorkedOnAt: cleanImportedDate(raw.lastWorkedOnAt)
+  };
+}
+
 function importBackupFile(file) {
   const reader = new FileReader();
   reader.onload = () => {
     try {
-      const data = JSON.parse(reader.result), imported = Array.isArray(data) ? data : data.intrays;
+      const data = JSON.parse(reader.result);
+      const imported = Array.isArray(data) ? data : isPlainObject(data) ? data.intrays : null;
+
       if (!Array.isArray(imported)) throw new Error('Invalid Backup File');
-      const clean = imported.map(x => ({
-        id: x.id || cryptoRandomId(),
-        name: toTitleCase(x.name || 'Untitled In-Tray'),
-        notes: toTitleCase(x.notes || ''),
-        cadenceNumber: Number(x.cadenceNumber) || 1,
-        cadenceUnit: ['days', 'business-days', 'weeks', 'months', 'years'].includes(x.cadenceUnit) ? x.cadenceUnit : 'months',
-        createdAt: x.createdAt || nowISO(),
-        lastClearedAt: x.lastClearedAt || null,
-        lastWorkedOnAt: x.lastWorkedOnAt || null
-      }));
+
+      const usedIds = new Set();
+      const clean = imported.map(item => cleanImportedIntray(item, usedIds));
+
       if (!confirm(`Import ${clean.length} In-Trays? This Will Replace Your Current List.`)) return;
       setUndo('Import Backup');
       intrays = clean;
+      expandedId = null;
       persist();
       resetForm();
       showForm(false);
