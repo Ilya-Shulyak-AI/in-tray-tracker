@@ -1,0 +1,6 @@
+/* Readability-only refinements. */
+
+.swipe-wrap:has(.swipe-card[data-swiped="1"]) .swipe-bg-left,
+.swipe-wrap:has(.swipe-card[data-swiped="1"]) .swipe-bg-right {
+  opacity: 1;
+}
