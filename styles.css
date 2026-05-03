@@ -320,6 +320,13 @@ button:disabled {
   display: flex;
   align-items: center;
   background: transparent;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.swipe-wrap.swiping-right .swipe-bg-left,
+.swipe-wrap.swiping-left .swipe-bg-right {
+  opacity: 1;
 }
 
 .swipe-bg-left {
