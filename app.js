@@ -279,21 +279,34 @@ function escapeHtml(str = '') {
 }
 
 // Swipe and card event handlers
+function resetSwipeState(card) {
+  const wrap = card.closest('.swipe-wrap');
+  if (wrap) wrap.classList.remove('swiping-left', 'swiping-right');
+  card.dataset.swiped = '0';
+}
+
 function attachHandlers() {
   document.querySelectorAll('.swipe-card').forEach(card => {
     let startX = 0, startY = 0;
     card.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
-      card.dataset.swiped = '0';
+      resetSwipeState(card);
       card.style.transition = 'none';
     }, { passive: true });
 
     card.addEventListener('touchmove', e => {
       const dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY;
+      const wrap = card.closest('.swipe-wrap');
       if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.2) {
         card.dataset.swiped = '1';
+        if (wrap) {
+          wrap.classList.toggle('swiping-left', dx < 0);
+          wrap.classList.toggle('swiping-right', dx > 0);
+        }
         card.style.transform = `translateX(${Math.max(-135, Math.min(135, dx))}px)`;
+      } else if (wrap) {
+        wrap.classList.remove('swiping-left', 'swiping-right');
       }
     }, { passive: true });
 
@@ -313,7 +326,7 @@ function attachHandlers() {
       card.style.transform = 'translateX(0)';
       setTimeout(() => {
         card.style.transition = '';
-        card.dataset.swiped = '0';
+        resetSwipeState(card);
       }, 260);
     });
   });
