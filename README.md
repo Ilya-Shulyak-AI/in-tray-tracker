@@ -2,6 +2,12 @@
 
 A single-page web app for tracking personal or work in-trays, including when each tray was last fully cleared or worked on.
 
+## Live app
+
+Use the live In-Tray Tracker URL when you want to quickly open and test the app:
+
+- [Open In-Tray Tracker](https://ilya-shulyak-ai.github.io/in-tray-tracker/)
+
 ## Core files
 
 - `index.html` contains the app structure.
