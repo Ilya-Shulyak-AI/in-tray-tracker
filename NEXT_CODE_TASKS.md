@@ -2,47 +2,31 @@
 
 These are the next runtime code tasks in safe executable order.
 
-## First task: obtain verified full index
+## Completed baseline
 
-1. Obtain a complete verified copy of `index.html`.
-2. Confirm it includes the full `<style>` block.
-3. Confirm it includes the full app markup.
-4. Confirm it includes the full `<script>` block.
-5. Do not continue runtime refactor work from truncated connector output.
+1. Runtime files are split into `index.html`, `styles.css`, `app.js`, and targeted CSS/JS helpers.
+2. `index.html` is markup only apart from external stylesheet and script references.
+3. CSS loads in a stable order with `mobile-bg-fix.css` after base styles.
+4. Exact text preservation, tags, backup reminders, import cleanup, and swipe fixes are consolidated in `app.js`.
 
-See `FULL_INDEX_REQUIRED.md`.
-
-## Second task: split files
-
-1. Extract inline CSS from `index.html` into `styles.css`.
-2. Extract inline JavaScript from `index.html` into `app.js`.
-3. Keep `index.html` as markup only.
-4. Load files in this order:
-   - `styles.css`
-   - `mobile-bg-fix.css`
-   - `app.js`
-
-## Third task: CSS cleanup
+## First task: CSS cleanup
 
 1. Remove unnecessary `!important` rules after cascade order is fixed.
 2. Consolidate duplicate glass/card/status styles.
 3. Keep `body::before` background behavior intact.
 4. Test iPhone Safari background behavior.
 
-## Fourth task: event cleanup
+## Second task: event cleanup
 
-1. Replace inline `onclick` handlers with `data-action` attributes.
-2. Add delegated click handling from the list container.
-3. Remove global function exports.
-4. Replace touch-only swipe with pointer events.
+1. Keep delegated click and keyboard handling from the list container.
+2. Replace per-card touch listener attachment with pointer events or a delegated gesture layer.
+3. Preserve iPhone Safari scroll/swipe behavior.
 
-## Fifth task: data cleanup
+## Third task: data cleanup
 
-1. Preserve acronyms in names.
-2. Preserve note capitalization.
-3. Validate imports strictly.
-4. Add storage migration support.
-5. Improve undo metadata.
+1. Add a formal backup JSON schema.
+2. Add versioned storage migration support.
+3. Improve undo metadata.
 
 ## Guardrail
 

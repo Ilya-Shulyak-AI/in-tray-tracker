@@ -29,21 +29,20 @@ Before editing, confirm the full file includes:
 - The complete inline `<script>` block.
 - Closing `</script>`, `</body>`, and `</html>` tags.
 
-## First runtime refactor
+## Runtime refactor status
 
-After the full file is verified:
+The runtime split has been completed:
 
-1. Extract the inline CSS into `styles.css`.
-2. Extract the inline JavaScript into `app.js`.
-3. Keep `index.html` as markup only.
-4. Load styles in this order:
-   - `styles.css`
-   - `mobile-bg-fix.css`
-5. Load `app.js` after the markup.
+1. `index.html` contains markup and external file references.
+2. `styles.css` contains base styles.
+3. `mobile-bg-fix.css` preserves the fixed background layer.
+4. `app.js` contains core app behavior.
+
+Continue to avoid large `index.html` rewrites from truncated content.
 
 ## Guardrails
 
 - Preserve `mobile-bg-fix.css` and the fixed `body::before` background layer.
-- Do not remove `!important` until stylesheet order is verified.
-- Do not change UI behavior during the split.
-- Test the app after each extraction step.
+- Do not remove `!important` until mobile behavior is verified.
+- Keep UI behavior changes intentionally scoped.
+- Test the app after each runtime change.

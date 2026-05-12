@@ -3,16 +3,16 @@
 ## App runtime files
 
 - `index.html`  
-  Main app file. Currently contains markup, inline CSS, and inline JavaScript.
+  Main app markup and script/style loading order.
 
 - `styles.css`  
-  Placeholder for extracted base app styles. Must be populated only from a complete verified `index.html`.
+  Base app styles, including toolbar, cards, tags, backup status, and responsive layout.
 
 - `mobile-bg-fix.css`  
   Fixed background layer and mobile stability overrides. This file is critical for iPhone Safari behavior.
 
 - `app.js`  
-  Placeholder for extracted app JavaScript. Must be populated only from a complete verified `index.html`.
+  Core app behavior: storage hardening, state, rendering, filters, tags, undo, import/export, and gestures.
 
 ## Documentation files
 

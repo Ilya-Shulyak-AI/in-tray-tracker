@@ -40,14 +40,15 @@ http://localhost:8000
 4. Test after each change.
 5. Commit after each verified step.
 
-## First local refactor target
+## Current local refactor target
 
-Extract inline CSS from `index.html` into `styles.css`, then load files in this order:
+Runtime files are already split. Focus local refactors on small, testable changes to:
 
 1. `styles.css`
 2. `mobile-bg-fix.css`
+3. `app.js`
 
-After that, extract inline JavaScript into `app.js`.
+Keep the fixed background layer intact and test the app after each change.
 
 ## Required checks
 

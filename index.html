@@ -26,11 +26,14 @@
       <div class="toolbar">
         <div class="toolbar-row">
           <input id="searchInput" type="text" placeholder="Search" />
-          <select id="filterStatus">
+          <select id="filterStatus" aria-label="Filter by status">
             <option value="all">All</option>
             <option value="good">Good</option>
             <option value="warning">Needs Attention</option>
             <option value="overdue">Overdue</option>
+          </select>
+          <select id="filterTag" aria-label="Filter by tag">
+            <option value="all">All Tags</option>
           </select>
           <button id="toggleFormBtn">Add</button>
         </div>
@@ -43,6 +46,7 @@
           <button id="importBtn" class="secondary">Import Backup</button>
           <input id="importFile" class="hidden" type="file" accept="application/json,.json" />
         </div>
+        <div id="backupStatus" class="backup-status" aria-live="polite"></div>
       </div>
 
       <div class="form hidden" id="formWrap">
@@ -63,6 +67,12 @@
               <option value="weeks">Weeks</option>
               <option value="months" selected>Months</option>
               <option value="years">Years</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="tagInput">Tag</label>
+            <select id="tagInput">
+              <option value="Untagged">Untagged</option>
             </select>
           </div>
         </div>
@@ -150,21 +160,29 @@
           </section>
 
           <section>
+            <h3>Tags</h3>
+            <p>Tags are optional labels for context, such as Home, Work, Church, or a specific device. Use one clear tag per in-tray so filtering stays useful. In-trays without a custom tag are treated as Untagged.</p>
+          </section>
+
+          <section>
             <h3>Undo And Backups</h3>
             <ul>
               <li><strong>Undo</strong> reverses your last major action.</li>
+              <li>The app reminds you to export once a week after Sunday at 6:00 AM if you have not backed up since then.</li>
               <li><strong>Export Backup</strong> downloads your current list as a JSON file.</li>
               <li><strong>Import Backup</strong> restores a JSON backup and replaces your current list.</li>
             </ul>
+          </section>
+
+          <section>
+            <h3>Version</h3>
+            <p>Version <span id="appVersion">1.0</span></p>
           </section>
         </div>
       </div>
     </div>
 
     <script src="app.js"></script>
-    <script src="preserve-name-input.js"></script>
-    <script src="gesture-fix.js"></script>
-    <script src="tag-feature.js"></script>
     <script src="help-panel.js"></script>
   </body>
 </html>

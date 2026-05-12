@@ -1,54 +1,38 @@
 # Refactor Plan
 
-## Phase 0: Hard gate before runtime edits
+## Completed baseline
 
-1. Obtain a verified complete copy of `index.html`.
-2. Confirm the file includes the full `<head>` section.
-3. Confirm the file includes the complete inline `<style>` block.
-4. Confirm the file includes the complete app markup.
-5. Confirm the file includes the complete inline `<script>` block.
-6. Confirm the file ends with `</script>`, `</body>`, and `</html>`.
+1. Runtime files are split into `index.html`, `styles.css`, `app.js`, and targeted helper styles/scripts.
+2. `index.html` is markup only apart from external stylesheet and script references.
+3. Exact text preservation, tags, backup reminders, import cleanup, and swipe fixes are consolidated in `app.js`.
 
-Do not perform runtime refactors from truncated content.
-
-## Phase 1: Make files editable safely
-
-1. Extract inline CSS into `styles.css`.
-2. Extract inline JavaScript into `app.js`.
-3. Keep `index.html` as markup only.
-4. Confirm the app still loads after each extraction.
-
-## Phase 2: Clean CSS cascade
+## Phase 1: Clean CSS cascade
 
 1. Load `styles.css` before `mobile-bg-fix.css`.
 2. Remove unnecessary `!important` rules.
 3. Consolidate duplicate glass/card styles.
 4. Keep the fixed background layer intact.
 
-## Phase 3: Clean JavaScript events
+## Phase 2: Clean JavaScript events
 
-1. Replace inline `onclick` handlers.
-2. Remove global function exports.
-3. Replace repeated event attachment after render with delegated listeners.
-4. Convert touch-only swipe handling to pointer events.
+1. Keep list click and keyboard handling delegated.
+2. Replace repeated card touch attachment after render with delegated pointer events.
+3. Preserve iPhone Safari scroll/swipe behavior.
 
-## Phase 4: Harden data
+## Phase 3: Harden data
 
-1. Preserve acronyms in names.
-2. Preserve note capitalization.
-3. Validate imported backup schema.
-4. Regenerate duplicate imported IDs.
-5. Add versioned storage support.
-6. Improve undo metadata.
+1. Add a formal backup JSON schema document.
+2. Add versioned storage support.
+3. Improve undo metadata.
 
-## Phase 5: Improve exactness and accessibility
+## Phase 4: Improve exactness and accessibility
 
 1. Optimize business-day calculation.
 2. Improve month/year date math.
 3. Make cards keyboard-operable.
 4. Add ARIA labels for actions and stats.
 
-## Phase 6: Final verification
+## Phase 5: Final verification
 
 1. Run `TEST_CHECKLIST.md`.
 2. Test on iPhone Safari.
