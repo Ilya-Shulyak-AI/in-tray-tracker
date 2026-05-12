@@ -9,13 +9,12 @@ Make the app smoother and lighter without changing user-facing behavior.
 - The app appears to fully re-render the list after many actions.
 - Event handlers may be reattached after every render.
 - Swipe handlers are attached directly to cards.
-- Large inline CSS and JavaScript make changes harder to isolate.
 - Date/status calculations run during render.
 
 ## Step-by-step plan
 
-1. Split inline JavaScript into `app.js` after full `index.html` access is available.
-2. Replace repeated event attachment with delegated listeners.
+1. Continue replacing repeated card gesture attachment with delegated or pointer-event handling.
+2. Keep click and keyboard handling delegated from the list container.
 3. Cache status calculations during a render pass if needed.
 4. Avoid unnecessary full-list re-renders for simple timestamp changes if complexity stays low.
 5. Keep DOM updates simple and predictable.

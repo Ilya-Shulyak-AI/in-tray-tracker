@@ -16,7 +16,7 @@ There is no account system, login, sharing, or multi-user support.
 
 ## Import validation
 
-Import handling needs stronger validation before it should be considered hardened. See `IMPLEMENTATION_BACKLOG.md`.
+Import handling now normalizes in-tray shape, cadence fields, dates, tags, and duplicate IDs. It still does not enforce a formal JSON schema document.
 
 ## Undo behavior
 
@@ -28,11 +28,11 @@ Business-day, month, and year calculations need refinement. Current behavior is 
 
 ## Accessibility
 
-Keyboard and screen-reader support needs deeper work. See `IMPLEMENTATION_BACKLOG.md`.
+Cards are keyboard-expandable and core controls have labels, but full screen-reader QA and deeper interaction review are still pending. See `IMPLEMENTATION_BACKLOG.md`.
 
 ## Architecture
 
-The main app is still largely contained in `index.html`. Future work should split structure, styles, and JavaScript into separate files before deeper refactoring.
+Runtime code is split across markup, CSS, and JavaScript files. Future work should continue reducing duplication and adding automated browser coverage.
 
 ## iPhone background constraint
 

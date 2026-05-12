@@ -4,7 +4,9 @@ A single-page web app for tracking personal or work in-trays, including when eac
 
 ## Core files
 
-- `index.html` contains the app structure, styles, and JavaScript.
+- `index.html` contains the app structure.
+- `styles.css` contains the base app styles.
+- `app.js` contains storage, rendering, filtering, import/export, and gesture behavior.
 - `mobile-bg-fix.css` contains the critical fixed background layer and mobile stability overrides.
 - `TEST_CHECKLIST.md` contains the manual regression checklist.
 - `IMPLEMENTATION_BACKLOG.md` contains remaining deeper JS/index hardening tasks.
@@ -22,6 +24,9 @@ The app stores data locally in the browser using:
 
 - `in-tray-tracker-v1`
 - `in-tray-last-undo`
+- `in-tray-stats-mode`
+- `in-tray-tag-filter`
+- `in-tray-last-backup-at`
 
 ## Change workflow
 

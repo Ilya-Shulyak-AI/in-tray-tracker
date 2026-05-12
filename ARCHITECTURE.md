@@ -2,25 +2,18 @@
 
 ## Current structure
 
-The app currently runs from a mostly single-file structure:
+The app now runs from separated runtime files:
 
-- `index.html` contains markup, inline CSS, and inline JavaScript.
+- `index.html` contains the markup and script/style loading order.
+- `styles.css` contains the base visual system.
 - `mobile-bg-fix.css` contains the fixed background layer and mobile stability overrides.
-
-This structure works, but it makes deeper edits harder because a small change can require replacing a large file.
+- `readability.css` and `help-panel.css` contain targeted presentation refinements.
+- `app.js` contains the core application behavior.
+- `help-panel.js` contains the help dialog behavior.
 
 ## Current constraint
 
-Do not perform large `index.html` rewrites unless the full file is available without truncation.
-
-## Target structure
-
-The preferred future structure is:
-
-- `index.html` for markup only.
-- `styles.css` for base app styles.
-- `mobile-bg-fix.css` for the fixed background layer or a carefully merged equivalent.
-- `app.js` for app behavior.
+Do not perform large `index.html` rewrites unless the full file is available without truncation. Keep the fixed-background behavior in `mobile-bg-fix.css` intact unless it has been tested on iPhone Safari.
 
 ## CSS order
 

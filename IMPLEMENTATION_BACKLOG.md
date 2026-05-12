@@ -1,34 +1,27 @@
 # In-Tray Tracker Implementation Backlog
 
-These runtime changes are gated until a complete verified copy of `index.html` is available.
+This backlog tracks completed stabilization work and remaining cleanup after the runtime split. See `FULL_INDEX_REQUIRED.md` before making any large `index.html` edits.
 
-See `FULL_INDEX_REQUIRED.md` before editing runtime app files.
+## Completed stabilization items
 
-## Blocked until full index is verified
+1. Runtime files are split across `index.html`, `styles.css`, `app.js`, and `mobile-bg-fix.css`.
+2. CSS cascade order is established as `styles.css`, `mobile-bg-fix.css`, `readability.css`, then targeted component CSS.
+3. Inline spacing and click handlers have been replaced with reusable classes and event listeners.
+4. Deprecated patch scripts for exact text, gestures, and tags have been consolidated into `app.js`.
 
-1. Split runtime files into:
-   - `index.html`
-   - `styles.css`
-   - `app.js`
-   - `mobile-bg-fix.css`
-2. Move CSS cascade into the correct order:
-   - `styles.css`
-   - `mobile-bg-fix.css`
-3. Remove inline `style="margin-top:8px;"` attributes and replace them with a reusable `.mt-8` class.
-4. Replace inline `onclick` handlers with event delegation.
-5. Remove global `window.markCleared`, `window.markWorkedOn`, and `window.startEdit` exports after inline handlers are gone.
-6. Replace full re-render event reattachment with delegated listeners.
-7. Remove unnecessary `!important` rules after cascade order is fixed.
-8. Consolidate duplicate glass/card/status styles.
+## Remaining cleanup
+
+5. Replace per-render touch listener attachment with broader delegated or pointer-event handling.
+6. Remove unnecessary `!important` rules after targeted mobile/iPhone testing.
+7. Consolidate duplicate glass/card/status styles.
 
 ## Data hardening
 
-9. Fix title-case behavior so acronyms such as IT, PDF, LLC, IRS, CRM, URL, and HR are preserved.
-10. Preserve note capitalization instead of title-casing notes.
-11. Add import schema validation for required fields, dates, cadence units, and cadence numbers.
-12. Regenerate duplicate imported IDs.
-13. Add a versioned storage wrapper while preserving compatibility with existing `in-tray-tracker-v1` arrays.
-14. Improve undo payload shape to include action metadata.
+8. Exact name and note capitalization is preserved for new saves and imports.
+9. Import normalization validates cadence units, cadence numbers, dates, tags, and duplicate IDs.
+10. Add a formal JSON schema document for backups.
+11. Add a versioned storage wrapper while preserving compatibility with existing `in-tray-tracker-v1` arrays.
+12. Improve undo payload shape to include richer action metadata.
 
 ## Date logic
 
