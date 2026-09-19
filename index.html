@@ -25,7 +25,10 @@
 
       <div class="toolbar">
         <div class="toolbar-row">
-          <input id="searchInput" type="text" placeholder="Search" />
+          <div class="search-field">
+            <input id="searchInput" type="text" placeholder="Search" aria-label="Search in-trays" />
+            <button type="button" id="clearSearchBtn" class="search-clear hidden" aria-label="Clear search" title="Clear search">×</button>
+          </div>
           <select id="filterStatus" aria-label="Filter by status">
             <option value="all">All</option>
             <option value="good">Good</option>
@@ -153,7 +156,7 @@
           <section>
             <h3>Search, Filter, And Stats</h3>
             <ul>
-              <li>Use <strong>Search</strong> to find in-trays by name or notes.</li>
+              <li>Use <strong>Search</strong> to find in-trays by name or notes. Tap the <strong>×</strong> in the search box to clear it and show everything again.</li>
               <li>Use the status dropdown to show all, good, needs-attention, or overdue items.</li>
               <li>Tap the stats bar to toggle between counts and percentages.</li>
             </ul>

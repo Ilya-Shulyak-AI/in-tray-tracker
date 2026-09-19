@@ -15,6 +15,7 @@ const els = {
   list: document.getElementById('list'),
   stats: document.getElementById('stats'),
   searchInput: document.getElementById('searchInput'),
+  clearSearchBtn: document.getElementById('clearSearchBtn'),
   filterStatus: document.getElementById('filterStatus'),
   filterTag: document.getElementById('filterTag'),
   toggleFormBtn: document.getElementById('toggleFormBtn'),
@@ -351,6 +352,11 @@ function pct(n, total) {
   return total ? `${Math.round((n / total) * 100)}%` : '0%';
 }
 
+function syncClearSearchBtn() {
+  const hasQuery = Boolean(els.searchInput.value.trim());
+  els.clearSearchBtn.classList.toggle('hidden', !hasQuery);
+}
+
 // Render helpers
 function renderStats() {
   const counts = { total: intrays.length, good: 0, warning: 0, overdue: 0 };
@@ -361,6 +367,7 @@ function renderStats() {
 }
 
 function render() {
+  syncClearSearchBtn();
   renderStats();
   renderBackupStatus();
   updateUndoButton();
@@ -834,6 +841,11 @@ els.cancelBtn.addEventListener('click', () => {
 });
 els.undoBtn.addEventListener('click', undoLast);
 els.searchInput.addEventListener('input', render);
+els.clearSearchBtn.addEventListener('click', () => {
+  els.searchInput.value = '';
+  els.searchInput.focus();
+  render();
+});
 els.filterStatus.addEventListener('change', render);
 els.filterTag.addEventListener('change', () => {
   activeTagFilter = els.filterTag.value;

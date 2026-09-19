@@ -113,6 +113,46 @@ h1 {
   min-width: 0;
 }
 
+.search-field {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+}
+
+.search-field input {
+  width: 100%;
+  padding-right: 2rem;
+}
+
+.search-clear {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 1.7rem;
+  height: 1.7rem;
+  min-width: 1.7rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(247, 247, 251, 0.95);
+  font-size: 1.05rem;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.search-clear:hover,
+.search-clear:focus-visible {
+  background: rgba(255, 255, 255, 0.28);
+  outline: none;
+}
+
 .form {
   padding: 12px;
 }
@@ -572,6 +612,17 @@ button:disabled {
     font-size: 0.7rem;
     padding-left: 4px;
     padding-right: 4px;
+  }
+
+  .search-field input {
+    padding-right: 1.85rem;
+  }
+
+  .search-clear {
+    width: 1.55rem;
+    height: 1.55rem;
+    min-width: 1.55rem;
+    font-size: 0.95rem;
   }
 
   .stat {
