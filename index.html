@@ -27,7 +27,12 @@
         <div class="toolbar-row">
           <div class="search-field">
             <input id="searchInput" type="text" placeholder="Search" aria-label="Search in-trays" />
-            <button type="button" id="clearSearchBtn" class="search-clear hidden" aria-label="Clear search" title="Clear search">×</button>
+            <button type="button" id="clearSearchBtn" class="search-clear hidden" aria-label="Clear search" title="Clear search">
+              <svg class="search-clear-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false">
+                <circle cx="10" cy="10" r="9"></circle>
+                <path d="M6.8 6.8l6.4 6.4M13.2 6.8l-6.4 6.4" stroke-linecap="round"></path>
+              </svg>
+            </button>
           </div>
           <select id="filterStatus" aria-label="Filter by status">
             <option value="all">All</option>
